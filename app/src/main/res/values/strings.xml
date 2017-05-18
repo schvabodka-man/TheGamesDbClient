@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TheGamesDbClient</string>
+    <string name="api_call">http://thegamesdb.net</string>
 </resources>
