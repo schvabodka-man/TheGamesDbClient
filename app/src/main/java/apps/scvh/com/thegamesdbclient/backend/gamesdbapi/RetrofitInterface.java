@@ -9,9 +9,9 @@ import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
-    @GET("/api/GetGame.php")
-    Call<GameRawData> getGame(@Query("id") int id);
+    @GET("")
+    Call<GameRawData> getGame(@Query("") int id);
 
-    @GET("/api/GetGamesList.php")
-    Call<List<GameRawData>> getSearchResults(@Query("name") String name);
+    @GET("")
+    Call<List<GameRawData>> getSearchResults(@Query("") String name);
 }

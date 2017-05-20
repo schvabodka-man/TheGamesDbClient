@@ -13,12 +13,13 @@
         <activity android:name=".frontend.layouts.Search">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".frontend.layouts.Game">
-        </activity>
+        <activity
+            android:name=".frontend.layouts.Game"/>
+        <activity
+            android:name=".frontend.layouts.Settings"/>
     </application>
 
 </manifest>

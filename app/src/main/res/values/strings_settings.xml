@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_key">Api key</string>
+    <string name="api_key_bigger">IGDB API Key</string>
+    <string name="api_key_setting">api_key</string>
+    <string name="settings_bar">Settings</string>
+</resources>

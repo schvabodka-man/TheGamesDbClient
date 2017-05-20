@@ -1,12 +1,10 @@
 package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
 
-
 import java.util.List;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 
 public class GameRetriever {
-
 
     private RetrofitInterface api;
 
@@ -14,11 +12,11 @@ public class GameRetriever {
         this.api = api;
     }
 
-    public Call<GameRawData> getGame(int id) {
-        return api.getGame(id);
+    public Observable<GameRawData> getGame(final int id) {
+        return Observable.defer(() -> Observable.just(api.getGame(id).execute().body()));
     }
 
-    public Call<List<GameRawData>> searchGames(String searchQuery) {
-        return api.getSearchResults(searchQuery);
+    public Observable<List<GameRawData>> searchGames(String searchQuery) {
+        return Observable.defer(() -> Observable.just(api.getSearchResults(searchQuery).execute().body()));
     }
 }
