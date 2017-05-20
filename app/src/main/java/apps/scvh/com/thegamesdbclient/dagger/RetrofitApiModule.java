@@ -12,6 +12,8 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -40,8 +42,14 @@ public class RetrofitApiModule {
     @Provides
     @Named("RetrofitInterface")
     RetrofitInterface retrofitInterface() {
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(chain -> {
+            Request request = chain.request().newBuilder().addHeader(context.getString(R
+                    .string.json_key), context.getString(R.string.json_value)).build();
+            return chain.proceed(request);
+        }).build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.api_call))
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitInterface api = retrofit.create(RetrofitInterface.class);

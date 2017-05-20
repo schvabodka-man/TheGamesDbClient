@@ -8,18 +8,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.GameRetriever;
+import apps.scvh.com.thegamesdbclient.dagger.Injector;
 
 
 public class Search extends AppCompatActivity {
 
-    private GameRetriever retriever;
+    @Inject
+    @Named("GameRetriever")
+    GameRetriever retriever;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Injector.inject(this);
     }
 
     @Override

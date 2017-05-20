@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_call">https://igdbcom-internet-game-database-v1.p.mashape.com/</string>
+    <string name="json_key">Accept</string>
+    <string name="json_value">application/json</string>
+    <string name="api_header">X-Mashape-Key</string>
+</resources>
