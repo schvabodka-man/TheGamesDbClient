@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">TheGamesDbClient</string>
-    <string name="api_call"></string>
+    <string name="api_call">https://igdbcom-internet-game-database-v1.p.mashape.com/</string>
 </resources>

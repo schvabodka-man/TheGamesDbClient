@@ -9,9 +9,12 @@ import android.view.MenuItem;
 
 
 import apps.scvh.com.thegamesdbclient.R;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.GameRetriever;
 
 
 public class Search extends AppCompatActivity {
+
+    private GameRetriever retriever;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

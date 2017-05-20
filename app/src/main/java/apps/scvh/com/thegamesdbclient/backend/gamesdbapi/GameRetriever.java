@@ -15,8 +15,10 @@ public class GameRetriever {
     private ApiKeyManager manager;
     private RawDataConverter converter;
 
-    public GameRetriever(RetrofitInterface api) {
+    public GameRetriever(RetrofitInterface api, ApiKeyManager manager, RawDataConverter converter) {
         this.api = api;
+        this.manager = manager;
+        this.converter = converter;
     }
 
     public Observable<GameData> getGame(final int id) {
