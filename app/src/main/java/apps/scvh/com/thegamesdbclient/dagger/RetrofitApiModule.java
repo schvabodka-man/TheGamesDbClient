@@ -52,8 +52,7 @@ public class RetrofitApiModule {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RetrofitInterface api = retrofit.create(RetrofitInterface.class);
-        return api;
+        return retrofit.create(RetrofitInterface.class);
     }
 
     @Provides

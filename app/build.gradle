@@ -49,7 +49,12 @@ dependencies {
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.0'
     compile group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.0.1'
     compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+    compile group: 'com.jakewharton', name: 'butterknife', version: '8.6.0'
+    compile group: 'com.jakewharton', name: 'butterknife-annotations', version: '8.6.0'
+    annotationProcessor group: 'com.jakewharton', name: 'butterknife-compiler', version: '8.6.0'
     testCompile 'junit:junit:4.12'
 }

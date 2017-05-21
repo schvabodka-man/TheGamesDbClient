@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +20,9 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.Injector;
+import apps.scvh.com.thegamesdbclient.frontend.list.AdapterList;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class Search extends AppCompatActivity {
@@ -26,11 +31,16 @@ public class Search extends AppCompatActivity {
     @Named("GameRetriever")
     GameRetriever retriever;
 
+    @BindView(R.id.search_list)
+    RecyclerView recycler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         Injector.inject(this);
+        ButterKnife.bind(this);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -60,12 +70,15 @@ public class Search extends AppCompatActivity {
 
     private void searchInit(Menu menu) {
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setIconifiedByDefault(false);
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
     }
 
     private void handleSearch(String query) {
-
+        retriever.searchGames(query).subscribe(games -> {
+            recycler.setAdapter(new AdapterList(games));
+        });
     }
 }
