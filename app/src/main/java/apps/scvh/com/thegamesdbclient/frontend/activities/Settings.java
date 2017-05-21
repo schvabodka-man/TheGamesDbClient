@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.frontend.layouts;
+package apps.scvh.com.thegamesdbclient.frontend.activities;
 
 
 import android.os.Bundle;

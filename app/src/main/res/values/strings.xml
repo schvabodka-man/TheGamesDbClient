@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TheGamesDbClient</string>
+    <string name="search_label">Search</string>
+    <string name="search_hint">Game name</string>
 </resources>

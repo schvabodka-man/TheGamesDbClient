@@ -2,7 +2,7 @@ package apps.scvh.com.thegamesdbclient.dagger;
 
 import javax.inject.Singleton;
 
-import apps.scvh.com.thegamesdbclient.frontend.layouts.Search;
+import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 import dagger.Component;
 
 @Singleton

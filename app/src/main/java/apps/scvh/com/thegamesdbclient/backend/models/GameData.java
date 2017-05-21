@@ -1,5 +1,7 @@
 package apps.scvh.com.thegamesdbclient.backend.models;
 
+import org.joda.time.DateTime;
+
 public class GameData {
 
     private int id;
@@ -9,6 +11,7 @@ public class GameData {
     private String storyline;
     private double rating;
     private double popularity;
+    private DateTime releaseTime;
 
     public int getId() {
         return id;
@@ -64,5 +67,13 @@ public class GameData {
 
     public void setPopularity(double popularity) {
         this.popularity = popularity;
+    }
+
+    public DateTime getReleaseTime() {
+        return releaseTime;
+    }
+
+    public void setReleaseTime(DateTime releaseTime) {
+        this.releaseTime = releaseTime;
     }
 }

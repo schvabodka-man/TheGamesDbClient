@@ -1,6 +1,8 @@
 package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
 
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,14 +17,17 @@ public class RawDataConverter {
         data.setName(rawData.getName());
         data.setPopularity(rawData.getPopularity());
         data.setRating(rawData.getRating());
-        if (data.getStoryline() != null) {
+        if (rawData.getStoryline() != null) {
             data.setStoryline(rawData.getStoryline());
         }
-        if (data.getSummary() != null) {
+        if (rawData.getSummary() != null) {
             data.setSummary(rawData.getSummary());
         }
-        if (data.getUrl() != null) {
+        if (rawData.getUrl() != null) {
             data.setUrl(rawData.getUrl());
+        }
+        if (rawData.getReleasedTime() != 0) {
+            data.setReleaseTime(new DateTime(rawData.getReleasedTime()));
         }
         return data;
     }

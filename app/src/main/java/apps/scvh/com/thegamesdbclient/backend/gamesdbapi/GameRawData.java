@@ -19,6 +19,8 @@ public class GameRawData {
     private double rating;
     @SerializedName("popularity")
     private double popularity;
+    @SerializedName("first_release_date")
+    private long releasedTime;
 
     public int getId() {
         return id;
@@ -74,5 +76,13 @@ public class GameRawData {
 
     public void setPopularity(double popularity) {
         this.popularity = popularity;
+    }
+
+    public long getReleasedTime() {
+        return releasedTime;
+    }
+
+    public void setReleasedTime(long releasedTime) {
+        this.releasedTime = releasedTime;
     }
 }

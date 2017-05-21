@@ -1,7 +1,7 @@
 package apps.scvh.com.thegamesdbclient.dagger;
 
 
-import apps.scvh.com.thegamesdbclient.frontend.layouts.Search;
+import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 
 public class Injector {
 

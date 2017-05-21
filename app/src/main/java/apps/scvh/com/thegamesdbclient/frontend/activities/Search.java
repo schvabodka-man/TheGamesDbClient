@@ -1,11 +1,15 @@
-package apps.scvh.com.thegamesdbclient.frontend.layouts;
+package apps.scvh.com.thegamesdbclient.frontend.activities;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 
 import javax.inject.Inject;
@@ -33,6 +37,7 @@ public class Search extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
+        searchInit(menu);
         return true;
     }
 
@@ -43,5 +48,24 @@ public class Search extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            handleSearch(intent.getStringExtra(SearchManager.QUERY));
+        }
+    }
+
+    private void searchInit(Menu menu) {
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+    }
+
+    private void handleSearch(String query) {
+
     }
 }
