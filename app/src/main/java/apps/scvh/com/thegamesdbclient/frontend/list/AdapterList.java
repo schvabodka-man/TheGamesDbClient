@@ -1,5 +1,7 @@
 package apps.scvh.com.thegamesdbclient.frontend.list;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,13 +14,16 @@ import java.util.ArrayList;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
+import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 
 public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
     private ArrayList<GameData> data;
+    private Context context;
 
-    public AdapterList(ArrayList<GameData> data) {
+    public AdapterList(ArrayList<GameData> data, Context context) {
         this.data = data;
+        this.context = context;
     }
 
     @Override
@@ -33,6 +38,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         if (data.get(position).getSummary() != null) {
             holder.summary.setText(data.get(position).getSummary());
         }
+        holder.clickInit(data.get(position).getId(), context);
     }
 
     @Override
@@ -53,6 +59,14 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
             image = (ImageView) itemView.findViewById(R.id.cover);
             name = (TextView) itemView.findViewById(R.id.game_name_list);
             summary = (TextView) itemView.findViewById(R.id.summary_list);
+        }
+
+        void clickInit(int gameId, Context context) {
+            card.setOnClickListener(v -> {
+                Intent intent = new Intent(context, Game.class);
+                intent.putExtra(context.getString(R.string.bundle_id), gameId);
+                context.startActivity(intent);
+            });
         }
     }
 }
