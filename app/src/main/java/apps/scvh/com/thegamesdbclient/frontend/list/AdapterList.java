@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 
 import apps.scvh.com.thegamesdbclient.R;
@@ -39,7 +41,9 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         GameData gameData = data.get(position);
         holder.name.setText(gameData.getName());
         if (gameData.getSummary() != null) {
-            holder.summary.setText(gameData.getSummary());
+            holder.summary.setText(StringUtils.abbreviate(gameData.getSummary(), Integer.parseInt
+                    (context
+                    .getString(R.string.max_chars))));
         }
         if (gameData.getImageURL() != null) {
             Picasso.with(context).load(gameData.getImageURL()).into(holder.image);
