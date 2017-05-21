@@ -1,13 +1,10 @@
 package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
 
 
-import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import apps.scvh.com.thegamesdbclient.backend.ApiKeyManager;
-import apps.scvh.com.thegamesdbclient.backend.GameData;
+import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -25,18 +22,16 @@ public class GameRetriever {
     }
 
     public Observable<GameData> getGame(final int id) {
-        return Observable.defer(() -> {
-            String apiKey = manager.getApiKey();
-            GameRawData rawData = api.getGame(id).execute().body().get(0);
-            return Observable.just(converter.convertRawData(api.getGame(id).execute().body().get(0)));
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return Observable.defer(() -> Observable.just(converter.convertRawData(api.getGame(id)
+                .execute().body().get(0)))).subscribeOn(Schedulers.io()).observeOn
+                (AndroidSchedulers.mainThread());
     }
 
 
     public Observable<ArrayList<GameData>> searchGames(final String searchQuery) {
-        return Observable.defer(() -> {
-            return Observable.just(converter.convertRawSearch(api.getSearchResults
-                    (searchQuery).execute().body()));
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return Observable.defer(() -> Observable.just(converter.convertRawSearch(api
+                .getSearchResults
+                (searchQuery).execute().body()))).subscribeOn(Schedulers.io()).observeOn
+                (AndroidSchedulers.mainThread());
     }
 }
