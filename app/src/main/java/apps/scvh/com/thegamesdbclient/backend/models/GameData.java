@@ -9,6 +9,7 @@ public class GameData {
     private String url;
     private String summary;
     private String storyline;
+    private String imageURL;
     private double rating;
     private double popularity;
     private DateTime releaseTime;
@@ -75,5 +76,13 @@ public class GameData {
 
     public void setReleaseTime(DateTime releaseTime) {
         this.releaseTime = releaseTime;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

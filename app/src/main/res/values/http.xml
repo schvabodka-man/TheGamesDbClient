@@ -4,4 +4,6 @@
     <string name="json_key">Accept</string>
     <string name="json_value">application/json</string>
     <string name="api_header">X-Mashape-Key</string>
+    <string name="to_replace">//</string>
+    <string name="repalce_with">https://</string>
 </resources>

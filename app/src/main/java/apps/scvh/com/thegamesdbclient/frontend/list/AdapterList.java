@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import apps.scvh.com.thegamesdbclient.R;
@@ -34,11 +36,15 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(data.get(position).getName());
-        if (data.get(position).getSummary() != null) {
-            holder.summary.setText(data.get(position).getSummary());
+        GameData gameData = data.get(position);
+        holder.name.setText(gameData.getName());
+        if (gameData.getSummary() != null) {
+            holder.summary.setText(gameData.getSummary());
         }
-        holder.clickInit(data.get(position).getId(), context);
+        if (gameData.getImageURL() != null) {
+            Picasso.with(context).load(gameData.getImageURL()).into(holder.image);
+        }
+        holder.clickInit(gameData.getId(), context);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
+package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -21,6 +21,8 @@ public class GameRawData {
     private double popularity;
     @SerializedName("first_release_date")
     private long releasedTime;
+    @SerializedName("cover")
+    private RawCover cover;
 
     public int getId() {
         return id;
@@ -84,5 +86,13 @@ public class GameRawData {
 
     public void setReleasedTime(long releasedTime) {
         this.releasedTime = releasedTime;
+    }
+
+    public RawCover getCover() {
+        return cover;
+    }
+
+    public void setCover(RawCover cover) {
+        this.cover = cover;
     }
 }

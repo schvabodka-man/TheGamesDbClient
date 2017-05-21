@@ -36,7 +36,7 @@ public class RetrofitApiModule {
     @Provides
     @Named("GameDataConverter")
     RawDataConverter dataConverter() {
-        return new RawDataConverter();
+        return new RawDataConverter(context);
     }
 
     @Provides
