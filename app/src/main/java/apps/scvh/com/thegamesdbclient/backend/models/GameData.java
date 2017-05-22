@@ -2,6 +2,8 @@ package apps.scvh.com.thegamesdbclient.backend.models;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+
 public class GameData {
 
     private int id;
@@ -9,10 +11,11 @@ public class GameData {
     private String url;
     private String summary;
     private String storyline;
-    private String imageURL;
+    private ArrayList<String> imageURLs;
     private double rating;
     private double popularity;
     private DateTime releaseTime;
+    private String coverURL;
 
     public int getId() {
         return id;
@@ -78,11 +81,31 @@ public class GameData {
         this.releaseTime = releaseTime;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public ArrayList<String> getScreenshots() {
+        return imageURLs;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void addScreenshot(String imageURL) {
+        imageURLs.add(imageURL);
+    }
+
+    public void initScreenshotsArray() {
+        imageURLs = new ArrayList<>();
+    }
+
+    public ArrayList<String> getImageURLs() {
+        return imageURLs;
+    }
+
+    public void setImageURLs(ArrayList<String> imageURLs) {
+        this.imageURLs = imageURLs;
+    }
+
+    public String getCoverURL() {
+        return coverURL;
+    }
+
+    public void setCoverURL(String coverURL) {
+        this.coverURL = coverURL;
     }
 }

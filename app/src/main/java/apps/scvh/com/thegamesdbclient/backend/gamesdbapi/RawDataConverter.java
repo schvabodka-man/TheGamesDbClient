@@ -11,6 +11,7 @@ import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.RawScreenshot;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 
 public class RawDataConverter {
@@ -36,8 +37,18 @@ public class RawDataConverter {
         if (rawData.getUrl() != null) {
             data.setUrl(rawData.getUrl());
         }
+        if (rawData.getScreenshots() != null) {
+            Iterator<RawScreenshot> iterator = rawData.getScreenshots().iterator();
+            RawScreenshot screenshot;
+            data.initScreenshotsArray();
+            while (iterator.hasNext()) {
+                screenshot = iterator.next();
+                data.addScreenshot(screenshot.getScreenshotUrl().replace(context.getString(R.string
+                        .to_replace), context.getString(R.string.repalce_with)));
+            }
+        }
         if (rawData.getCover() != null) {
-            data.setImageURL(rawData.getCover().getCoverUrl().replace(context.getString(R.string
+            data.setCoverURL(rawData.getCover().getCoverUrl().replace(context.getString(R.string
                     .to_replace), context.getString(R.string.repalce_with)));
         }
         if (rawData.getReleasedTime() != 0) {

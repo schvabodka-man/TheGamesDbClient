@@ -43,10 +43,10 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         if (gameData.getSummary() != null) {
             holder.summary.setText(StringUtils.abbreviate(gameData.getSummary(), Integer.parseInt
                     (context
-                    .getString(R.string.max_chars))));
+                            .getString(R.string.max_chars))));
         }
-        if (gameData.getImageURL() != null) {
-            Picasso.with(context).load(gameData.getImageURL()).into(holder.image);
+        if (gameData.getCoverURL() != null) {
+            Picasso.with(context).load(gameData.getCoverURL()).resize(300, 200).into(holder.image);
         }
         holder.clickInit(gameData.getId(), context);
     }
@@ -55,6 +55,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public int getItemCount() {
         return data.size();
     }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 

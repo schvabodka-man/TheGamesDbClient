@@ -15,4 +15,5 @@ public class RawCover {
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
+
 }

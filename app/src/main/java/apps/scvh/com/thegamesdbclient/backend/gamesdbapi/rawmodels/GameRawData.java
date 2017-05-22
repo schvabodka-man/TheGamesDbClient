@@ -3,6 +3,8 @@ package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class GameRawData {
 
     @SerializedName("id")
@@ -21,6 +23,8 @@ public class GameRawData {
     private double popularity;
     @SerializedName("first_release_date")
     private long releasedTime;
+    @SerializedName("screenshots")
+    private List<RawScreenshot> screenshots;
     @SerializedName("cover")
     private RawCover cover;
 
@@ -86,6 +90,14 @@ public class GameRawData {
 
     public void setReleasedTime(long releasedTime) {
         this.releasedTime = releasedTime;
+    }
+
+    public List<RawScreenshot> getScreenshots() {
+        return screenshots;
+    }
+
+    public void setScreenshots(List<RawScreenshot> cover) {
+        this.screenshots = cover;
     }
 
     public RawCover getCover() {
