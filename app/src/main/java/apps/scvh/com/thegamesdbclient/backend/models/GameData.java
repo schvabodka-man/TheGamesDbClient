@@ -14,6 +14,7 @@ public class GameData {
     private ArrayList<String> imageURLs;
     private double rating;
     private double popularity;
+    private DateTime timeToComplete;
     private DateTime releaseTime;
     private String coverURL;
 
@@ -107,5 +108,13 @@ public class GameData {
 
     public void setCoverURL(String coverURL) {
         this.coverURL = coverURL;
+    }
+
+    public DateTime getTimeToComplete() {
+        return timeToComplete;
+    }
+
+    public void setTimeToComplete(DateTime timeToComplete) {
+        this.timeToComplete = timeToComplete;
     }
 }

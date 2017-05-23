@@ -27,6 +27,8 @@ public class GameRawData {
     private List<RawScreenshot> screenshots;
     @SerializedName("cover")
     private RawCover cover;
+    @SerializedName("time_to_beat")
+    private CompletionTime time;
 
     public int getId() {
         return id;
@@ -106,5 +108,13 @@ public class GameRawData {
 
     public void setCover(RawCover cover) {
         this.cover = cover;
+    }
+
+    public CompletionTime getTime() {
+        return time;
+    }
+
+    public void setTime(CompletionTime time) {
+        this.time = time;
     }
 }

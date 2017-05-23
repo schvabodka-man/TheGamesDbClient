@@ -4,4 +4,10 @@
     <string name="search_hint">Game name</string>
     <string name="bundle_id">gameid</string>
     <string name="button_view">VIEW</string>
+    <string name="rating">Rating \n %s</string>
+    <string name="popularity">Popularity \n %s</string>
+    <string name="release_date">Released \n %1$s/%2$s/%3$s</string>
+    <string name="completition_time">Time to beat \n %s hours</string>
+    <string name="story">Story</string>
+    <string name="summary">Summary</string>
 </resources>

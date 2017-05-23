@@ -2,6 +2,7 @@ package apps.scvh.com.thegamesdbclient.dagger;
 
 import javax.inject.Singleton;
 
+import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 import dagger.Component;
 
@@ -9,4 +10,6 @@ import dagger.Component;
 @Component(modules = {RetrofitApiModule.class})
 public interface AppDIComponent {
     void inject(Search search);
+
+    void inject(Game game);
 }

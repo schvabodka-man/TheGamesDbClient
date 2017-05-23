@@ -54,6 +54,11 @@ public class RawDataConverter {
         if (rawData.getReleasedTime() != 0) {
             data.setReleaseTime(new DateTime(rawData.getReleasedTime()));
         }
+        if (rawData.getTime() != null) {
+            if (rawData.getTime().getNormally() != 0) {
+                data.setTimeToComplete(new DateTime(rawData.getTime().getNormally() * 1000));
+            }
+        }
         return data;
     }
 

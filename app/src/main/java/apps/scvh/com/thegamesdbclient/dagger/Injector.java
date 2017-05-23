@@ -1,6 +1,7 @@
 package apps.scvh.com.thegamesdbclient.dagger;
 
 
+import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 
 public class Injector {
@@ -12,4 +13,10 @@ public class Injector {
         component.inject(search);
     }
 
+    public static void inject(Game game) {
+        AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
+                RetrofitApiModule(game.getBaseContext())
+        ).build();
+        component.inject(game);
+    }
 }
