@@ -1,8 +1,12 @@
 package apps.scvh.com.thegamesdbclient.frontend.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,6 +62,22 @@ public class Game extends AppCompatActivity {
 
     private Observable<GameData> receiveGameFromIntent() {
         return retriever.getGame(getIntent().getIntExtra(getString(R.string.bundle_id), 1));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.game_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.search_in_game) {
+            Intent intent = new Intent(this, Settings.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
     private void populateUI(Observable<GameData> data) {

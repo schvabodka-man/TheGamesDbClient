@@ -10,4 +10,5 @@
     <string name="completition_time">Time to beat \n %s hours</string>
     <string name="story">Story</string>
     <string name="summary">Summary</string>
+    <string name="share">Share</string>
 </resources>

@@ -11,8 +11,7 @@
 
     <item
         android2:id="@+id/search_menu"
-        android2:icon="@drawable/ic_settings_white_36dp"
         android2:title="@string/settings_bar"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="never"/>
 
 </menu>
