@@ -6,6 +6,8 @@ import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 
 public class Injector {
 
+//    two statics methods for easier work
+
     public static void inject(Search search) {
         AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
                 RetrofitApiModule(search.getBaseContext())
