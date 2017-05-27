@@ -1,10 +1,12 @@
-package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
+package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 
 public class MetadataRetriever {
 
@@ -14,7 +16,7 @@ public class MetadataRetriever {
         this.retrofitInterface = retrofitInterface;
     }
 
-    ArrayList<String> getGenres(List<Integer> genreId) {
+    public ArrayList<String> getGenres(List<Integer> genreId) {
         Iterator<Integer> genres = genreId.iterator();
         ArrayList<String> genresConverted = new ArrayList<>();
         int nextGenreId;
@@ -29,5 +31,21 @@ public class MetadataRetriever {
             }
         }
         return genresConverted;
+    }
+
+    public ArrayList<String> getEngines(List<Integer> id) {
+        Iterator<Integer> engines = id.iterator();
+        ArrayList<String> engineConverted = new ArrayList<>();
+        int nextEngineId;
+        while (engines.hasNext()) {
+            nextEngineId = engines.next();
+            try {
+                engineConverted.add(retrofitInterface.getEngine(nextEngineId).execute().body()
+                        .get(0).getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return engineConverted;
     }
 }

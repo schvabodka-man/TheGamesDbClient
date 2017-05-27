@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.RawGenre;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawGameEngine;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawGenre;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -22,4 +24,9 @@ public interface RetrofitInterface {
     @GET("/genres/{Id}/?fields=name")
     Call<List<RawGenre>> getGenreName(@Path("Id") int id);
 
+    @GET("/genres/{Id}/?fields=name")
+    Call<List<RawDeveloper>> getDeveloper(@Path("Id") int id);
+
+    @GET("/game_engines/{Id}/?fields=name")
+    Call<List<RawGameEngine>> getEngine(@Path("Id") int id);
 }

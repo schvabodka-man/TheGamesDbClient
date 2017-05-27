@@ -11,7 +11,8 @@ import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.RawScreenshot;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawScreenshot;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 
 public class RawDataConverter {
@@ -24,7 +25,7 @@ public class RawDataConverter {
         this.retriever = retriever;
     }
 
-    GameData convertRawData(GameRawData rawData) {
+    public GameData convertRawData(GameRawData rawData) {
         GameData data = new GameData();
         data.setId(rawData.getId());
         data.setName(rawData.getName());
@@ -79,10 +80,13 @@ public class RawDataConverter {
         if (rawData.getGenres() != null) {
             data.setGenres(retriever.getGenres(rawData.getGenres()));
         }
+        if (rawData.getEngines() != null) {
+            data.setGameEngines(retriever.getEngines(rawData.getEngines()));
+        }
         return data;
     }
 
-    ArrayList<GameData> convertRawSearch(List<GameRawData> rawDatas) {
+    public ArrayList<GameData> convertRawSearch(List<GameRawData> rawDatas) {
         ArrayList<GameData> data = new ArrayList<>();
         Iterator<GameRawData> iterator = rawDatas.iterator();
         GameRawData iterable;

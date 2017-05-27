@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels;
+package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata;
 
 
 import com.google.gson.annotations.SerializedName;

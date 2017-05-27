@@ -22,7 +22,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.R;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.GameRetriever;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.dagger.Injector;
 import butterknife.BindView;
@@ -49,6 +49,8 @@ public class Game extends AppCompatActivity {
     TextView releaseDate;
     @BindView(R.id.time_to_beat)
     TextView timeToBeat;
+    @BindView(R.id.game_engine)
+    TextView gameEngine;
     @BindView(R.id.summary)
     TextView summary;
     @BindView(R.id.card_summary)
@@ -142,7 +144,11 @@ public class Game extends AppCompatActivity {
                 esrb.setText(data1.getEsrb());
             }
             if (data1.getGenres() != null) {
-                genre.setText(StringUtils.join(data1.getGenres(), ", "));
+                genre.setText(StringUtils.join(data1.getGenres(), getString(R.string.splitter)));
+            }
+            if (data1.getGameEngines() != null) {
+                gameEngine.setText(getString(R.string.running_on_engine, StringUtils.join(data1
+                        .getGameEngines(), getString(R.string.splitter))));
             }
             setShareIntent(data1.getUrl());
         });

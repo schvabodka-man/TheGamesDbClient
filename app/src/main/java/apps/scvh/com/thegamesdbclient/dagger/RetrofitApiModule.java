@@ -7,10 +7,10 @@ import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.ApiKeyManager;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.GameRetriever;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;

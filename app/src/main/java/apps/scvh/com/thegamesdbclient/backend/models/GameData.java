@@ -19,6 +19,7 @@ public class GameData {
     private String coverURL;
     private String pegi;
     private String esrb;
+    private ArrayList<String> gameEngines;
     private ArrayList<String> genres;
 
     public int getId() {
@@ -143,5 +144,13 @@ public class GameData {
 
     public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
+    }
+
+    public ArrayList<String> getGameEngines() {
+        return gameEngines;
+    }
+
+    public void setGameEngines(ArrayList<String> gameEngines) {
+        this.gameEngines = gameEngines;
     }
 }

@@ -5,6 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawCover;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawScreenshot;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.stats.CompletionTime;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.stats.GameAgeClass;
+
 public class GameRawData {
 
     @SerializedName("id")
@@ -35,6 +40,10 @@ public class GameRawData {
     private GameAgeClass esrb;
     @SerializedName("genres")
     private List<Integer> genres;
+    @SerializedName("developers")
+    private List<Integer> developers;
+    @SerializedName("game_engines")
+    private List<Integer> engines;
 
     public int getId() {
         return id;
@@ -146,5 +155,21 @@ public class GameRawData {
 
     public void setGenres(List<Integer> genres) {
         this.genres = genres;
+    }
+
+    public List<Integer> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(List<Integer> developers) {
+        this.developers = developers;
+    }
+
+    public List<Integer> getEngines() {
+        return engines;
+    }
+
+    public void setEngines(List<Integer> engines) {
+        this.engines = engines;
     }
 }

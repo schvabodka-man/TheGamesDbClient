@@ -1,8 +1,10 @@
-package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
+package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers;
 
 
 import java.util.ArrayList;
 
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
