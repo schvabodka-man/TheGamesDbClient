@@ -53,6 +53,14 @@ public class Game extends AppCompatActivity {
     TextView story;
     @BindView(R.id.card_story)
     CardView cardStory;
+    @BindView(R.id.card_esrb)
+    CardView esrbCard;
+    @BindView(R.id.card_pegi)
+    CardView pegiCard;
+    @BindView(R.id.esrb)
+    TextView esrb;
+    @BindView(R.id.pegi)
+    TextView pegi;
 
     private ShareActionProvider actionProvider;
 
@@ -120,6 +128,14 @@ public class Game extends AppCompatActivity {
             if (data1.getStoryline() != null) {
                 cardStory.setVisibility(View.VISIBLE);
                 story.setText(data1.getStoryline());
+            }
+            if (data1.getPegi() != null) {
+                pegiCard.setVisibility(View.VISIBLE);
+                pegi.setText(data1.getPegi());
+            }
+            if (data1.getEsrb() != null) {
+                esrbCard.setVisibility(View.VISIBLE);
+                esrb.setText(data1.getEsrb());
             }
             setShareIntent(data1.getUrl());
         });

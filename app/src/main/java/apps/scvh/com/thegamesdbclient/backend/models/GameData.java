@@ -17,6 +17,8 @@ public class GameData {
     private DateTime timeToComplete;
     private DateTime releaseTime;
     private String coverURL;
+    private String pegi;
+    private String esrb;
 
     public int getId() {
         return id;
@@ -116,5 +118,21 @@ public class GameData {
 
     public void setTimeToComplete(DateTime timeToComplete) {
         this.timeToComplete = timeToComplete;
+    }
+
+    public String getPegi() {
+        return pegi;
+    }
+
+    public void setPegi(String pegi) {
+        this.pegi = pegi;
+    }
+
+    public String getEsrb() {
+        return esrb;
+    }
+
+    public void setEsrb(String esrb) {
+        this.esrb = esrb;
     }
 }

@@ -13,4 +13,6 @@
     <string name="share">Share</string>
     <string name="mime_type_for_sharing">text/plain</string>
     <string name="share_url">Share URL</string>
+    <string name="pegi">PEGI</string>
+    <string name="esrb">ESRB</string>
 </resources>

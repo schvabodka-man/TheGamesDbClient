@@ -59,6 +59,21 @@ public class RawDataConverter {
                 data.setTimeToComplete(new DateTime(rawData.getTime().getNormally() * 1000));
             }
         }
+        if (rawData.getEsrb() != null) {
+            if (rawData.getEsrb().getSynopsis() != null) {
+                if (rawData.getEsrb().getSynopsis().length() != 0) { //this is here because some of
+                    // the game returns only ratings which i don't need
+                    data.setEsrb(rawData.getEsrb().getSynopsis());
+                }
+            }
+        }
+        if (rawData.getPegi() != null) {
+            if (rawData.getPegi().getSynopsis() != null) { //same as esrb
+                if (rawData.getPegi().getSynopsis().length() != 0) {
+                    data.setPegi(rawData.getPegi().getSynopsis());
+                }
+            }
+        }
         return data;
     }
 
@@ -72,4 +87,5 @@ public class RawDataConverter {
         }
         return data;
     }
+
 }

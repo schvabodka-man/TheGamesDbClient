@@ -29,6 +29,10 @@ public class GameRawData {
     private RawCover cover;
     @SerializedName("time_to_beat")
     private CompletionTime time;
+    @SerializedName("pegi")
+    private GameAgeClass pegi;
+    @SerializedName("esrb")
+    private GameAgeClass esrb;
 
     public int getId() {
         return id;
@@ -116,5 +120,21 @@ public class GameRawData {
 
     public void setTime(CompletionTime time) {
         this.time = time;
+    }
+
+    public GameAgeClass getPegi() {
+        return pegi;
+    }
+
+    public void setPegi(GameAgeClass pegi) {
+        this.pegi = pegi;
+    }
+
+    public GameAgeClass getEsrb() {
+        return esrb;
+    }
+
+    public void setEsrb(GameAgeClass esrb) {
+        this.esrb = esrb;
     }
 }
