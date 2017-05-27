@@ -38,8 +38,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingTop="@dimen/game_name_padding"
-                    android:textColor="@color/white"
+                    android:textAlignment="center"
                     android:textSize="@dimen/big_text_size"/>
+
+                <TextView
+                    android:id="@+id/game_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="@dimen/game_genre_padding"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/little_text_size"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -53,32 +62,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/padding_in_stats_block"
-                        android:paddingStart="@dimen/padding_in_stats_block"
-                        android:textColor="@color/white"/>
+                        android:paddingStart="@dimen/padding_in_stats_block"/>
 
                     <TextView
                         android:id="@+id/popularity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/padding_in_stats_block"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:id="@+id/release_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/padding_in_stats_block"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:id="@+id/time_to_beat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/padding_in_stats_block"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textAlignment="center"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -109,14 +114,12 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/padding_in_cardview"
                             android:text="@string/story"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/big_text_size"/>
 
                         <TextView
                             android:id="@+id/summary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/small_text_size"/>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -141,14 +144,12 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/padding_in_cardview"
                             android:text="@string/summary"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/big_text_size"/>
 
                         <TextView
                             android:id="@+id/story"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/small_text_size"/>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -173,14 +174,12 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/padding_in_cardview"
                             android:text="@string/pegi"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/big_text_size"/>
 
                         <TextView
                             android:id="@+id/pegi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/small_text_size"/>
 
                     </LinearLayout>
@@ -206,14 +205,12 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/padding_in_cardview"
                             android:text="@string/esrb"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/big_text_size"/>
 
                         <TextView
                             android:id="@+id/esrb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/small_text_size"/>
 
                     </LinearLayout>

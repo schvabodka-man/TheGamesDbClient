@@ -3,7 +3,6 @@ package apps.scvh.com.thegamesdbclient.backend.gamesdbapi;
 
 import java.util.ArrayList;
 
-import apps.scvh.com.thegamesdbclient.backend.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -12,12 +11,10 @@ import io.reactivex.schedulers.Schedulers;
 public class GameRetriever {
 
     private RetrofitInterface api;
-    private ApiKeyManager manager;
     private RawDataConverter converter;
 
-    public GameRetriever(RetrofitInterface api, ApiKeyManager manager, RawDataConverter converter) {
+    public GameRetriever(RetrofitInterface api, RawDataConverter converter) {
         this.api = api;
-        this.manager = manager;
         this.converter = converter;
     }
 

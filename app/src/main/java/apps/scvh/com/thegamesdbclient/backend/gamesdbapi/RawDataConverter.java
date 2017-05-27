@@ -17,9 +17,11 @@ import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 public class RawDataConverter {
 
     private Context context;
+    private MetadataRetriever retriever;
 
-    public RawDataConverter(Context context) {
+    public RawDataConverter(Context context, MetadataRetriever retriever) {
         this.context = context;
+        this.retriever = retriever;
     }
 
     GameData convertRawData(GameRawData rawData) {
@@ -73,6 +75,9 @@ public class RawDataConverter {
                     data.setPegi(rawData.getPegi().getSynopsis());
                 }
             }
+        }
+        if (rawData.getGenres() != null) {
+            data.setGenres(retriever.getGenres(rawData.getGenres()));
         }
         return data;
     }

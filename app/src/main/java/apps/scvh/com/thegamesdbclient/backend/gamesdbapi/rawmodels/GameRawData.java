@@ -33,6 +33,8 @@ public class GameRawData {
     private GameAgeClass pegi;
     @SerializedName("esrb")
     private GameAgeClass esrb;
+    @SerializedName("genres")
+    private List<Integer> genres;
 
     public int getId() {
         return id;
@@ -136,5 +138,13 @@ public class GameRawData {
 
     public void setEsrb(GameAgeClass esrb) {
         this.esrb = esrb;
+    }
+
+    public List<Integer> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Integer> genres) {
+        this.genres = genres;
     }
 }

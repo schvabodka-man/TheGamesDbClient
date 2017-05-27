@@ -6,6 +6,7 @@
     <dimen name="card_name_width">200dp</dimen>
     <dimen name="image_top_padding">60dp</dimen>
     <dimen name="game_name_padding">20dp</dimen>
+    <dimen name="game_genre_padding">15dp</dimen>
     <dimen name="stats_layout_padding">175dp</dimen>
     <dimen name="padding_in_stats_block">30dp</dimen>
     <dimen name="stats_layout_bottom_padding">50dp</dimen>

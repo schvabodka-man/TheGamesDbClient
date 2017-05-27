@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -37,6 +39,8 @@ public class Game extends AppCompatActivity {
     ImageView cover;
     @BindView(R.id.game_name)
     TextView gameName;
+    @BindView(R.id.game_genre)
+    TextView genre;
     @BindView(R.id.rating)
     TextView rating;
     @BindView(R.id.popularity)
@@ -137,13 +141,17 @@ public class Game extends AppCompatActivity {
                 esrbCard.setVisibility(View.VISIBLE);
                 esrb.setText(data1.getEsrb());
             }
+            if (data1.getGenres() != null) {
+                genre.setText(StringUtils.join(data1.getGenres(), ", "));
+            }
             setShareIntent(data1.getUrl());
         });
     }
 
     private void initActionBar(ActionBar bar) {
+        bar.setShowHideAnimationEnabled(false);
+        bar.setDisplayShowTitleEnabled(false);
         bar.setElevation(0);
-        bar.setTitle("");
         bar.setDisplayHomeAsUpEnabled(true);
     }
 
