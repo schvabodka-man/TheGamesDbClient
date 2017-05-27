@@ -2,8 +2,11 @@ package apps.scvh.com.thegamesdbclient.frontend.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,12 +54,15 @@ public class Game extends AppCompatActivity {
     @BindView(R.id.card_story)
     CardView cardStory;
 
+    private ShareActionProvider actionProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Injector.inject(this);
         ButterKnife.bind(this);
+        initActionBar(getSupportActionBar());
         populateUI(receiveGameFromIntent());
     }
 
@@ -68,6 +74,8 @@ public class Game extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.game_menu, menu);
+        MenuItem searchButton = menu.findItem(R.id.menu_item_share);
+        initShareProvider((ShareActionProvider) MenuItemCompat.getActionProvider(searchButton));
         return true;
     }
 
@@ -113,6 +121,27 @@ public class Game extends AppCompatActivity {
                 cardStory.setVisibility(View.VISIBLE);
                 story.setText(data1.getStoryline());
             }
+            setShareIntent(data1.getUrl());
         });
+    }
+
+    private void initActionBar(ActionBar bar) {
+        bar.setElevation(0);
+        bar.setTitle("");
+        bar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initShareProvider(ShareActionProvider provider) {
+        actionProvider = provider;
+    }
+
+    private void setShareIntent(String url) {
+        if (actionProvider != null) {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType(getString(R.string.mime_type_for_sharing));
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, url);
+            actionProvider.setShareIntent(Intent.createChooser(sharingIntent, getString(R.string
+                    .share_url)));
+        }
     }
 }

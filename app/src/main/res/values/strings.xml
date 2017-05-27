@@ -11,4 +11,6 @@
     <string name="story">Story</string>
     <string name="summary">Summary</string>
     <string name="share">Share</string>
+    <string name="mime_type_for_sharing">text/plain</string>
+    <string name="share_url">Share URL</string>
 </resources>
