@@ -1,10 +1,13 @@
 package apps.scvh.com.thegamesdbclient.dagger.modules;
 
 
+import android.app.Activity;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import dagger.Module;
 import dagger.Provides;
@@ -13,18 +16,21 @@ import dagger.Provides;
 @Singleton
 public class FrontendModule {
 
-    private Game game;
+    private Activity activity;
 
-    public FrontendModule(Game game) {
-        this.game = game;
-    }
-
-    public FrontendModule() {
+    public FrontendModule(Activity activity) {
+        this.activity = activity;
     }
 
     @Provides
     @Named("ViewsInjector")
     public GameViewsInjector viewsInjector() {
-        return new GameViewsInjector(game);
+        return new GameViewsInjector((Game) activity);
+    }
+
+    @Provides
+    @Named("DialogManager")
+    LoadingDialogManager dialogManager() {
+        return new LoadingDialogManager(activity.getBaseContext());
     }
 }

@@ -1,7 +1,6 @@
 package apps.scvh.com.thegamesdbclient.dagger.comp;
 
 
-import apps.scvh.com.thegamesdbclient.dagger.DaggerAppDIComponent;
 import apps.scvh.com.thegamesdbclient.dagger.modules.FrontendModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.RetrofitApiModule;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
@@ -12,7 +11,7 @@ public class Injector {
     public static void inject(Search search) {
         AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
                 RetrofitApiModule(search.getBaseContext())
-        ).frontendModule(new FrontendModule()).build();
+        ).frontendModule(new FrontendModule(search)).build();
         component.inject(search);
     }
 

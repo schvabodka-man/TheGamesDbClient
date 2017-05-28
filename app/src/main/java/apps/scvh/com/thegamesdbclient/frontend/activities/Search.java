@@ -1,5 +1,6 @@
 package apps.scvh.com.thegamesdbclient.frontend.activities;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
+import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.AdapterList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +31,10 @@ public class Search extends AppCompatActivity {
     @Named("GameRetriever")
     GameRetriever retriever;
 
+    @Inject
+    @Named("DialogManager")
+    LoadingDialogManager loadingManager;
+
     @BindView(R.id.search_list)
     RecyclerView recycler;
 
@@ -38,6 +44,7 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Injector.inject(this);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         recycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -62,6 +69,7 @@ public class Search extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            loadingManager.showDialog(new ProgressDialog(this));
             handleSearch(intent.getStringExtra(SearchManager.QUERY));
         }
     }
@@ -77,6 +85,7 @@ public class Search extends AppCompatActivity {
     private void handleSearch(String query) {
         retriever.searchGames(query).subscribe(games -> {
             recycler.setAdapter(new AdapterList(games, this));
+            loadingManager.hideDialog();
         });
     }
 }

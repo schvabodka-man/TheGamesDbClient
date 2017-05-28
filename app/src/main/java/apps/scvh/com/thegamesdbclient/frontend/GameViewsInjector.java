@@ -1,6 +1,7 @@
 package apps.scvh.com.thegamesdbclient.frontend;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -66,7 +67,7 @@ public class GameViewsInjector {
         ButterKnife.bind(this, game);
     }
 
-    public void populateUI(Observable<GameData> data) {
+    public void populateUI(Observable<GameData> data, ProgressDialog dialog) {
         data.subscribe(data1 -> {
             gameName.setText(data1.getName());
             populateCover(cover, data1.getCoverURL());
@@ -127,6 +128,7 @@ public class GameViewsInjector {
                         .string
                         .splitter)));
             }
+            dialog.dismiss();
         });
     }
 

@@ -1,5 +1,6 @@
 package apps.scvh.com.thegamesdbclient.frontend.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -18,6 +19,7 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetrieve
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
 import io.reactivex.Observable;
 
 public class Game extends AppCompatActivity {
@@ -30,13 +32,18 @@ public class Game extends AppCompatActivity {
     @Named("ViewsInjector")
     GameViewsInjector viewsInjector;
 
+    @Inject
+    @Named("DialogManager")
+    LoadingDialogManager dialogManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Injector.inject(this);
         initActionBar(getSupportActionBar());
-        viewsInjector.populateUI(receiveGameFromIntent());
+        showProgressDialog(new ProgressDialog(this));
+        viewsInjector.populateUI(receiveGameFromIntent(), dialogManager.getDialog());
     }
 
     private Observable<GameData> receiveGameFromIntent() {
@@ -80,5 +87,10 @@ public class Game extends AppCompatActivity {
             actionProvider.setShareIntent(Intent.createChooser(sharingIntent, getString(R.string
                     .share_url)));
         }
+    }
+
+    private void showProgressDialog(ProgressDialog dialog) {
+        dialog.setOnCancelListener(dialog1 -> finish());
+        dialogManager.showDialog(dialog);
     }
 }
