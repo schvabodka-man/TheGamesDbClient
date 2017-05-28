@@ -7,9 +7,8 @@ import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {RetrofitApiModule.class})
-public interface AppDIComponent {
+@Component(modules = {RetrofitApiModule.class, FrontendModule.class})
+interface AppDIComponent {
     void inject(Search search);
-
     void inject(Game game);
 }

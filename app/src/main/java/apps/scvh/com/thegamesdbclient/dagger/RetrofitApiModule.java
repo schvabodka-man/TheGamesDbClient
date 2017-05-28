@@ -20,11 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Singleton
 @Module
-public class RetrofitApiModule {
+class RetrofitApiModule {
 
     private Context context;
 
-    public RetrofitApiModule(Context context) {
+    RetrofitApiModule(Context context) {
         this.context = context;
     }
 
@@ -70,4 +70,5 @@ public class RetrofitApiModule {
                                                 retrofitInterface) {
         return new MetadataRetriever(retrofitInterface);
     }
+
 }

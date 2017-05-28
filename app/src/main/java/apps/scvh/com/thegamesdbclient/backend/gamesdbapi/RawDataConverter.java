@@ -27,19 +27,35 @@ public class RawDataConverter {
 
     public GameData convertRawData(GameRawData rawData) {
         GameData data = new GameData();
+        convertBasic(rawData, data);
+        convertPictures(rawData, data);
+        convertStory(rawData, data);
+        convertTime(rawData, data);
+        convertAgeRating(rawData, data);
+        convertMetadata(rawData, data);
+        return data;
+    }
+
+    private void convertBasic(GameRawData rawData, GameData data) {
         data.setId(rawData.getId());
         data.setName(rawData.getName());
         data.setPopularity(rawData.getPopularity());
         data.setRating(rawData.getRating());
+        if (rawData.getUrl() != null) {
+            data.setUrl(rawData.getUrl());
+        }
+    }
+
+    private void convertStory(GameRawData rawData, GameData data) {
         if (rawData.getStoryline() != null) {
             data.setStoryline(rawData.getStoryline());
         }
         if (rawData.getSummary() != null) {
             data.setSummary(rawData.getSummary());
         }
-        if (rawData.getUrl() != null) {
-            data.setUrl(rawData.getUrl());
-        }
+    }
+
+    private void convertPictures(GameRawData rawData, GameData data) {
         if (rawData.getScreenshots() != null) {
             Iterator<RawScreenshot> iterator = rawData.getScreenshots().iterator();
             RawScreenshot screenshot;
@@ -54,14 +70,9 @@ public class RawDataConverter {
             data.setCoverURL(rawData.getCover().getCoverUrl().replace(context.getString(R.string
                     .to_replace), context.getString(R.string.repalce_with)));
         }
-        if (rawData.getReleasedTime() != 0) {
-            data.setReleaseTime(new DateTime(rawData.getReleasedTime()));
-        }
-        if (rawData.getTime() != null) {
-            if (rawData.getTime().getNormally() != 0) {
-                data.setTimeToComplete(new DateTime(rawData.getTime().getNormally() * 1000));
-            }
-        }
+    }
+
+    private void convertAgeRating(GameRawData rawData, GameData data) {
         if (rawData.getEsrb() != null) {
             if (rawData.getEsrb().getSynopsis() != null) {
                 if (rawData.getEsrb().getSynopsis().length() != 0) { //this is here because some of
@@ -77,13 +88,26 @@ public class RawDataConverter {
                 }
             }
         }
+    }
+
+    private void convertTime(GameRawData rawData, GameData data) {
+        if (rawData.getReleasedTime() != 0) {
+            data.setReleaseTime(new DateTime(rawData.getReleasedTime()));
+        }
+        if (rawData.getTime() != null) {
+            if (rawData.getTime().getNormally() != 0) {
+                data.setTimeToComplete(new DateTime(rawData.getTime().getNormally() * 1000));
+            }
+        }
+    }
+
+    private void convertMetadata(GameRawData rawData, GameData data) {
         if (rawData.getGenres() != null) {
             data.setGenres(retriever.getGenres(rawData.getGenres()));
         }
         if (rawData.getEngines() != null) {
             data.setGameEngines(retriever.getEngines(rawData.getEngines()));
         }
-        return data;
     }
 
     public ArrayList<GameData> convertRawSearch(List<GameRawData> rawDatas) {
