@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
 
 public class MetadataRetriever {
 
@@ -17,35 +18,58 @@ public class MetadataRetriever {
     }
 
     public ArrayList<String> getGenres(List<Integer> genreId) {
-        Iterator<Integer> genres = genreId.iterator();
-        ArrayList<String> genresConverted = new ArrayList<>();
-        int nextGenreId;
-        while (genres.hasNext()) {
-            nextGenreId = genres.next();
-            try {
-                genresConverted.add(retrofitInterface.getGenreName(nextGenreId).execute().body()
-                        .get(0).getName()); // No, it won't produce null pointer because if there
-                // are no genres set this code will not be called ;)
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return genresConverted;
+        return retrieveMetadataFromList(genreId, MetadataTypeFlag.GENRES);
     }
 
     public ArrayList<String> getEngines(List<Integer> id) {
-        Iterator<Integer> engines = id.iterator();
-        ArrayList<String> engineConverted = new ArrayList<>();
-        int nextEngineId;
-        while (engines.hasNext()) {
-            nextEngineId = engines.next();
+        return retrieveMetadataFromList(id, MetadataTypeFlag.ENGINES);
+    }
+
+    public ArrayList<String> getGamemodes(List<Integer> id) {
+        return retrieveMetadataFromList(id, MetadataTypeFlag.GAMEMODES);
+    }
+
+    public ArrayList<String> getPerspectives(List<Integer> id) {
+        return retrieveMetadataFromList(id, MetadataTypeFlag.PERSPECTIVES);
+    }
+
+    public ArrayList<String> getThemes(List<Integer> id) {
+        return retrieveMetadataFromList(id, MetadataTypeFlag.THEMES);
+    }
+
+    private ArrayList<String> retrieveMetadataFromList(List<Integer> id, MetadataTypeFlag flag) {
+        Iterator<Integer> iterator = id.iterator();
+        ArrayList<String> converted = new ArrayList<>();
+        int nextId;
+        while (iterator.hasNext()) {
+            nextId = iterator.next();
             try {
-                engineConverted.add(retrofitInterface.getEngine(nextEngineId).execute().body()
-                        .get(0).getName());
+                converted.add(convertIdToStringData(nextId, flag));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return engineConverted;
+        return converted;
+    }
+
+    private String convertIdToStringData(int id, MetadataTypeFlag flag) throws IOException {
+        if (flag == MetadataTypeFlag.GENRES) {
+            return retrofitInterface.getGenreName(id).execute().body()
+                    .get(0).getName();
+        } else if (flag == MetadataTypeFlag.ENGINES) {
+            return retrofitInterface.getEngine(id).execute().body()
+                    .get(0).getName();
+        } else if (flag == MetadataTypeFlag.GAMEMODES) {
+            return retrofitInterface.getGamemodes(id).execute().body()
+                    .get(0).getName();
+        } else if (flag == MetadataTypeFlag.PERSPECTIVES) {
+            return retrofitInterface.getPerspective(id).execute().body()
+                    .get(0).getName();
+        } else if (flag == MetadataTypeFlag.THEMES) {
+            return retrofitInterface.getThemes(id).execute().body()
+                    .get(0).getName();
+        } else {
+            return "";
+        }
     }
 }

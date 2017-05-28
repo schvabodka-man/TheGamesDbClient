@@ -38,6 +38,12 @@ public class GameViewsInjector {
     TextView timeToBeat;
     @BindView(R.id.game_engine)
     TextView gameEngine;
+    @BindView(R.id.theme)
+    TextView theme;
+    @BindView(R.id.gamemodes)
+    TextView gamemodes;
+    @BindView(R.id.perspectives)
+    TextView perspectives;
     @BindView(R.id.summary)
     TextView summary;
     @BindView(R.id.card_summary)
@@ -107,6 +113,19 @@ public class GameViewsInjector {
             if (data1.getGameEngines() != null) {
                 gameEngine.setText(context.getString(R.string.running_on_engine, StringUtils.join
                         (data1.getGameEngines(), context.getString(R.string.splitter))));
+            }
+            if (data1.getThemes() != null) {
+                theme.setText(StringUtils.join(data1.getThemes(), context.getString(R.string
+                        .splitter)));
+            }
+            if (data1.getGameModes() != null) {
+                gamemodes.setText(StringUtils.join(data1.getGameModes(), context.getString(R.string
+                        .splitter)));
+            }
+            if (data1.getPerspective() != null) {
+                perspectives.setText(StringUtils.join(data1.getPerspective(), context.getString(R
+                        .string
+                        .splitter)));
             }
         });
     }

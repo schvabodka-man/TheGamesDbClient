@@ -44,6 +44,12 @@ public class GameRawData {
     private List<Integer> developers;
     @SerializedName("game_engines")
     private List<Integer> engines;
+    @SerializedName("themes")
+    private List<Integer> themes;
+    @SerializedName("game_modes")
+    private List<Integer> gameModes;
+    @SerializedName("player_perspectives")
+    private List<Integer> perspectives;
 
     public int getId() {
         return id;
@@ -171,5 +177,29 @@ public class GameRawData {
 
     public void setEngines(List<Integer> engines) {
         this.engines = engines;
+    }
+
+    public List<Integer> getThemes() {
+        return themes;
+    }
+
+    public void setThemes(List<Integer> themes) {
+        this.themes = themes;
+    }
+
+    public List<Integer> getGameModes() {
+        return gameModes;
+    }
+
+    public void setGameModes(List<Integer> gameModes) {
+        this.gameModes = gameModes;
+    }
+
+    public List<Integer> getPerspectives() {
+        return perspectives;
+    }
+
+    public void setPerspectives(List<Integer> perspectives) {
+        this.perspectives = perspectives;
     }
 }

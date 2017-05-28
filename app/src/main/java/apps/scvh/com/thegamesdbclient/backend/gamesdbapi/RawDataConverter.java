@@ -108,6 +108,15 @@ public class RawDataConverter {
         if (rawData.getEngines() != null) {
             data.setGameEngines(retriever.getEngines(rawData.getEngines()));
         }
+        if (rawData.getThemes() != null) {
+            data.setThemes(retriever.getThemes(rawData.getThemes()));
+        }
+        if (rawData.getGameModes() != null) {
+            data.setGameModes(retriever.getGamemodes(rawData.getGameModes()));
+        }
+        if (rawData.getPerspectives() != null) {
+            data.setPerspective(retriever.getPerspectives(rawData.getPerspectives()));
+        }
     }
 
     public ArrayList<GameData> convertRawSearch(List<GameRawData> rawDatas) {

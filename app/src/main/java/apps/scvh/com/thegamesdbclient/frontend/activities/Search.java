@@ -17,7 +17,7 @@ import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
-import apps.scvh.com.thegamesdbclient.dagger.Injector;
+import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.list.AdapterList;
 import butterknife.BindView;
 import butterknife.ButterKnife;

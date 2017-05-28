@@ -1,6 +1,5 @@
 package apps.scvh.com.thegamesdbclient.frontend.activities;
 
-
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;

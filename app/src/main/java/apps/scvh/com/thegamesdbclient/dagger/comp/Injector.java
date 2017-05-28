@@ -1,6 +1,9 @@
-package apps.scvh.com.thegamesdbclient.dagger;
+package apps.scvh.com.thegamesdbclient.dagger.comp;
 
 
+import apps.scvh.com.thegamesdbclient.dagger.DaggerAppDIComponent;
+import apps.scvh.com.thegamesdbclient.dagger.modules.FrontendModule;
+import apps.scvh.com.thegamesdbclient.dagger.modules.RetrofitApiModule;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 

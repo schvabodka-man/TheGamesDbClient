@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.dagger;
+package apps.scvh.com.thegamesdbclient.dagger.modules;
 
 
 import javax.inject.Named;
@@ -11,20 +11,20 @@ import dagger.Provides;
 
 @Module
 @Singleton
-class FrontendModule {
+public class FrontendModule {
 
     private Game game;
 
-    FrontendModule(Game game) {
+    public FrontendModule(Game game) {
         this.game = game;
     }
 
-    FrontendModule() {
+    public FrontendModule() {
     }
 
     @Provides
     @Named("ViewsInjector")
-    GameViewsInjector viewsInjector() {
+    public GameViewsInjector viewsInjector() {
         return new GameViewsInjector(game);
     }
 }

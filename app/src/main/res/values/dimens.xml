@@ -8,6 +8,7 @@
     <dimen name="game_name_padding">20dp</dimen>
     <dimen name="game_genre_padding">15dp</dimen>
     <dimen name="game_engine_padding">10dp</dimen>
+    <dimen name="small_padding">5dp</dimen>
     <dimen name="stats_layout_padding">175dp</dimen>
     <dimen name="padding_in_stats_block">30dp</dimen>
     <dimen name="stats_layout_bottom_padding">50dp</dimen>

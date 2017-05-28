@@ -6,8 +6,7 @@ import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawGameEngine;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawGenre;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawMetadata;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -22,11 +21,21 @@ public interface RetrofitInterface {
     Call<ArrayList<GameRawData>> getSearchResults(@Query("search") String name);
 
     @GET("/genres/{Id}/?fields=name")
-    Call<List<RawGenre>> getGenreName(@Path("Id") int id);
+    Call<List<RawMetadata>> getGenreName(@Path("Id") int id);
 
     @GET("/genres/{Id}/?fields=name")
     Call<List<RawDeveloper>> getDeveloper(@Path("Id") int id);
 
     @GET("/game_engines/{Id}/?fields=name")
-    Call<List<RawGameEngine>> getEngine(@Path("Id") int id);
+    Call<List<RawMetadata>> getEngine(@Path("Id") int id);
+
+    @GET("/player_perspectives/{Id}/?fields=name")
+    Call<List<RawMetadata>> getPerspective(@Path("Id") int id);
+
+    @GET("/themes/{Id}/?fields=name")
+    Call<List<RawMetadata>> getThemes(@Path("Id") int id);
+
+    @GET("/game_modes/{Id}/?fields=name")
+    Call<List<RawMetadata>> getGamemodes(@Path("Id") int id);
+
 }

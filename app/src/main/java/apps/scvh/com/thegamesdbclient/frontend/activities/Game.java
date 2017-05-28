@@ -16,7 +16,7 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
-import apps.scvh.com.thegamesdbclient.dagger.Injector;
+import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
 import io.reactivex.Observable;
 

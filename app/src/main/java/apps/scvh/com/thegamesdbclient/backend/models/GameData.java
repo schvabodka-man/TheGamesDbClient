@@ -21,6 +21,9 @@ public class GameData {
     private String esrb;
     private ArrayList<String> gameEngines;
     private ArrayList<String> genres;
+    private ArrayList<String> perspective;
+    private ArrayList<String> themes;
+    private ArrayList<String> gameModes;
 
     public int getId() {
         return id;
@@ -152,5 +155,29 @@ public class GameData {
 
     public void setGameEngines(ArrayList<String> gameEngines) {
         this.gameEngines = gameEngines;
+    }
+
+    public ArrayList<String> getPerspective() {
+        return perspective;
+    }
+
+    public void setPerspective(ArrayList<String> perspective) {
+        this.perspective = perspective;
+    }
+
+    public ArrayList<String> getThemes() {
+        return themes;
+    }
+
+    public void setThemes(ArrayList<String> themes) {
+        this.themes = themes;
+    }
+
+    public ArrayList<String> getGameModes() {
+        return gameModes;
+    }
+
+    public void setGameModes(ArrayList<String> gameModes) {
+        this.gameModes = gameModes;
     }
 }
