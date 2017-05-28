@@ -4,6 +4,7 @@ package apps.scvh.com.thegamesdbclient.frontend;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
+import apps.scvh.com.thegamesdbclient.frontend.list.SameGamesAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
@@ -131,13 +133,18 @@ public class GameViewsInjector {
                         .string
                         .splitter)));
             }
+            if (data1.getGameData() != null) {
+                sameGames.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager
+                        .HORIZONTAL, false));
+                sameGames.setAdapter(new SameGamesAdapter(data1.getGameData(), context));
+            }
             dialog.dismiss();
         });
     }
 
     private void populateCover(ImageView view, String coverURL) {
         if (coverURL != null) {
-            Picasso.with(context).load(coverURL).resize(300, 200).into
+            Picasso.with(context).load(coverURL).resize(200, 200).into
                     (view);
         }
     }

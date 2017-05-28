@@ -20,12 +20,12 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 
-public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
+public class SearchGamesAdapter extends RecyclerView.Adapter<SearchGamesAdapter.ViewHolder> {
 
     private ArrayList<GameData> data;
     private Context context;
 
-    public AdapterList(ArrayList<GameData> data, Context context) {
+    public SearchGamesAdapter(ArrayList<GameData> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -46,7 +46,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
                             .getString(R.string.max_chars))));
         }
         if (gameData.getCoverURL() != null) {
-            Picasso.with(context).load(gameData.getCoverURL()).resize(300, 200).into(holder.image);
+            Picasso.with(context).load(gameData.getCoverURL()).resize(200, 200).into(holder.image);
         }
         holder.clickInit(gameData.getId(), context);
     }

@@ -20,7 +20,7 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
-import apps.scvh.com.thegamesdbclient.frontend.list.AdapterList;
+import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -84,7 +84,7 @@ public class Search extends AppCompatActivity {
 
     private void handleSearch(String query) {
         retriever.searchGames(query).subscribe(games -> {
-            recycler.setAdapter(new AdapterList(games, this));
+            recycler.setAdapter(new SearchGamesAdapter(games, this));
             loadingManager.hideDialog();
         });
     }
