@@ -4,6 +4,7 @@ package apps.scvh.com.thegamesdbclient.frontend;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,6 +62,8 @@ public class GameViewsInjector {
     TextView esrb;
     @BindView(R.id.pegi)
     TextView pegi;
+    @BindView(R.id.same_games)
+    RecyclerView sameGames;
 
     public GameViewsInjector(Game game) {
         context = game.getBaseContext();

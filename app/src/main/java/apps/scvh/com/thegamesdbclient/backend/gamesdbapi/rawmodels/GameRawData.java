@@ -50,6 +50,8 @@ public class GameRawData {
     private List<Integer> gameModes;
     @SerializedName("player_perspectives")
     private List<Integer> perspectives;
+    @SerializedName("games")
+    private List<Integer> simillarGames;
 
     public int getId() {
         return id;
@@ -201,5 +203,13 @@ public class GameRawData {
 
     public void setPerspectives(List<Integer> perspectives) {
         this.perspectives = perspectives;
+    }
+
+    public List<Integer> getSimillarGames() {
+        return simillarGames;
+    }
+
+    public void setSimillarGames(List<Integer> simillarGames) {
+        this.simillarGames = simillarGames;
     }
 }

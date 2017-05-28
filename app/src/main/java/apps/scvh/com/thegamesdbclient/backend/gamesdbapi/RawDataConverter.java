@@ -33,6 +33,7 @@ public class RawDataConverter {
         convertTime(rawData, data);
         convertAgeRating(rawData, data);
         convertMetadata(rawData, data);
+        convertLightGameData(rawData, data);
         return data;
     }
 
@@ -116,6 +117,18 @@ public class RawDataConverter {
         }
         if (rawData.getPerspectives() != null) {
             data.setPerspective(retriever.getPerspectives(rawData.getPerspectives()));
+        }
+    }
+
+    private void convertLightGameData(GameRawData rawData, GameData data) {
+        if (rawData.getSimillarGames() != null) {
+            Iterator<Integer> iterator = rawData.getSimillarGames().iterator();
+            ArrayList<GameData> simillarGamesConverted = new ArrayList<>();
+            while (iterator.hasNext()) {
+                simillarGamesConverted.add(convertRawData(retriever.getRawSimillarGameData
+                        (iterator.next())));
+            }
+            data.setGameData(simillarGamesConverted);
         }
     }
 

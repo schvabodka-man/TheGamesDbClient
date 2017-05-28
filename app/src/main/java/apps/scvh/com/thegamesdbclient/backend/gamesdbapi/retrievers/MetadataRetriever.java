@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
 
 public class MetadataRetriever {
@@ -70,6 +71,15 @@ public class MetadataRetriever {
                     .get(0).getName();
         } else {
             return "";
+        }
+    }
+
+    public GameRawData getRawSimillarGameData(int id) {
+        try {
+            return retrofitInterface.getLightGameData(id).execute().body().get(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

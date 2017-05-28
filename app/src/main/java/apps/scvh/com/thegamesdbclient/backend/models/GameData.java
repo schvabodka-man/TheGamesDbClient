@@ -24,6 +24,7 @@ public class GameData {
     private ArrayList<String> perspective;
     private ArrayList<String> themes;
     private ArrayList<String> gameModes;
+    private ArrayList<GameData> gameData;
 
     public int getId() {
         return id;
@@ -179,5 +180,13 @@ public class GameData {
 
     public void setGameModes(ArrayList<String> gameModes) {
         this.gameModes = gameModes;
+    }
+
+    public ArrayList<GameData> getGameData() {
+        return gameData;
+    }
+
+    public void setGameData(ArrayList<GameData> gameData) {
+        this.gameData = gameData;
     }
 }
