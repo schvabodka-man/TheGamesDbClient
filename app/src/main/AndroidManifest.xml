@@ -22,8 +22,6 @@
         </activity>
         <activity
             android:name=".frontend.activities.Game"/>
-        <activity
-            android:name=".frontend.activities.Settings"/>
 
         <receiver
             android:name=".backend.gamesdbapi.retrievers.GameRetriever"

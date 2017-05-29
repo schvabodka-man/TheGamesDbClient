@@ -20,4 +20,5 @@
     <string name="loading">Loading</string>
     <string name="please_wait">Please wait</string>
     <string name="intent_key_changed">api_key_changed</string>
+    <string name="max_chars">200</string>
 </resources>

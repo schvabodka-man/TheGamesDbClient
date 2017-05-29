@@ -10,6 +10,7 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyWrite;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import dagger.Module;
@@ -76,8 +77,14 @@ public class RetrofitApiModule {
 
     @Provides
     @Named("KeyUpdater")
-    public ApiKeyUpdater updater() {
-        return new ApiKeyUpdater(context);
+    public ApiKeyUpdater updater(@Named("KeyWriter") ApiKeyWrite writer) {
+        return new ApiKeyUpdater(context, writer);
+    }
+
+    @Provides
+    @Named("KeyWriter")
+    public ApiKeyWrite writer() {
+        return new ApiKeyWrite(context);
     }
 
 }

@@ -19,7 +19,8 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetrieve
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
-import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import io.reactivex.Observable;
 
 public class Game extends AppCompatActivity {
@@ -31,6 +32,10 @@ public class Game extends AppCompatActivity {
     @Inject
     @Named("ViewsInjector")
     GameViewsInjector viewsInjector;
+
+    @Inject
+    @Named("ApiDialogManager")
+    ApiKeyDialogManager apiManager;
 
     @Inject
     @Named("DialogManager")
@@ -62,8 +67,7 @@ public class Game extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.search_in_game) {
-            Intent intent = new Intent(this, Settings.class);
-            startActivity(intent);
+            apiManager.showDialog();
         }
         return true;
     }

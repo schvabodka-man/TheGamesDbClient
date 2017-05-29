@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="api_key">Api key</string>
-    <string name="api_key_bigger">IGDB API Key</string>
     <string name="api_key_setting">api_key</string>
-    <string name="settings_bar">Settings</string>
-    <string name="max_chars">200</string>
+    <string name="key">Api key</string>
+    <string name="submit_api">SUBMIT</string>
+    <string name="enter_api_key">Enter API key</string>
 </resources>

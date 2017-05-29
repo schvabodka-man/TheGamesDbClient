@@ -11,7 +11,7 @@
 
     <item
         android2:id="@+id/search_menu"
-        android2:title="@string/settings_bar"
+        android2:title="@string/key"
         android:showAsAction="never"/>
 
 </menu>

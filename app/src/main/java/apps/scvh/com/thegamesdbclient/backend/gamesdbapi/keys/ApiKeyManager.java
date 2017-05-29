@@ -2,6 +2,9 @@ package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys;
 
 
 import android.content.Context;
+import android.preference.PreferenceManager;
+
+import apps.scvh.com.thegamesdbclient.R;
 
 
 public class ApiKeyManager {
@@ -13,9 +16,7 @@ public class ApiKeyManager {
     }
 
     public String getApiKey() {
-//         return PreferenceManager.getDefaultSharedPreferences(context).getString(context
-// .getString(R
-//                .string.api_key_setting), "");
-        return "TXWtLk4wtEmshHdqh80affyr0AcRp1wYMfyjsnaqCHJEKoGNIl";
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString
+                (R.string.api_key_setting), "");
     }
 }

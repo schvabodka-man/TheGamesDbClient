@@ -19,7 +19,8 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
-import apps.scvh.com.thegamesdbclient.frontend.LoadingDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,10 @@ public class Search extends AppCompatActivity {
     @Inject
     @Named("DialogManager")
     LoadingDialogManager loadingManager;
+
+    @Inject
+    @Named("ApiDialogManager")
+    ApiKeyDialogManager apiManager;
 
     @BindView(R.id.search_list)
     RecyclerView recycler;
@@ -59,8 +64,7 @@ public class Search extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.search_menu) {
-            Intent intent = new Intent(this, Settings.class);
-            startActivity(intent);
+            apiManager.showDialog();
         }
         return true;
     }

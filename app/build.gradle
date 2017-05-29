@@ -45,6 +45,7 @@ dependencies {
     compile group: 'com.jakewharton', name: 'butterknife', version: '8.6.0'
     compile group: 'com.jakewharton', name: 'butterknife-annotations', version: '8.6.0'
     annotationProcessor group: 'com.jakewharton', name: 'butterknife-compiler', version: '8.6.0'
+    compile 'com.scottyab:secure-preferences-lib:0.1.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     testCompile 'junit:junit:4.12'
 }

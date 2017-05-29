@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.frontend;
+package apps.scvh.com.thegamesdbclient.frontend.dialogs;
 
 
 import android.app.ProgressDialog;
