@@ -6,9 +6,10 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.R;
-import apps.scvh.com.thegamesdbclient.backend.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import dagger.Module;
@@ -71,6 +72,12 @@ public class RetrofitApiModule {
     public MetadataRetriever metadataRetriever(@Named("RetrofitInterface") RetrofitInterface
                                                        retrofitInterface) {
         return new MetadataRetriever(retrofitInterface);
+    }
+
+    @Provides
+    @Named("KeyUpdater")
+    public ApiKeyUpdater updater() {
+        return new ApiKeyUpdater(context);
     }
 
 }

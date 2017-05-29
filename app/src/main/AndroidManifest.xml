@@ -24,6 +24,22 @@
             android:name=".frontend.activities.Game"/>
         <activity
             android:name=".frontend.activities.Settings"/>
+
+        <receiver
+            android:name=".backend.gamesdbapi.retrievers.GameRetriever"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="api_key_changed"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".backend.gamesdbapi.retrievers.MetadataRetriever"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="api_key_changed"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

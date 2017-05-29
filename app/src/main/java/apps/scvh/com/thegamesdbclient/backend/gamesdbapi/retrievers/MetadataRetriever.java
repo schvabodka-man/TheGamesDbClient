@@ -1,18 +1,34 @@
 package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
 
-public class MetadataRetriever {
+public class MetadataRetriever extends BroadcastReceiver {
 
-    private RetrofitInterface retrofitInterface;
+    @Inject
+    @Named("RetrofitInterface")
+    RetrofitInterface retrofitInterface;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+    }
+
+    public MetadataRetriever() {
+    }
 
     public MetadataRetriever(RetrofitInterface retrofitInterface) {
         this.retrofitInterface = retrofitInterface;

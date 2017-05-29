@@ -1,7 +1,14 @@
 package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
@@ -10,10 +17,19 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class GameRetriever {
+public class GameRetriever extends BroadcastReceiver {
 
-    private RetrofitInterface api;
+    @Inject
+    @Named("RetrofitInterface")
+    RetrofitInterface api;
     private RawDataConverter converter;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+    }
+
+    public GameRetriever() {
+    }
 
     public GameRetriever(RetrofitInterface api, RawDataConverter converter) {
         this.api = api;
