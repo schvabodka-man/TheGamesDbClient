@@ -25,6 +25,9 @@ public class FrontendModule {
         this.activity = activity;
     }
 
+    public FrontendModule() {
+    }
+
     @Provides
     @Named("ViewsInjector")
     public GameViewsInjector viewsInjector() {

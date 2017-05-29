@@ -13,6 +13,7 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
+import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -26,6 +27,7 @@ public class GameRetriever extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Injector.inject(this, context);
     }
 
     public GameRetriever() {
@@ -46,7 +48,7 @@ public class GameRetriever extends BroadcastReceiver {
     public Observable<ArrayList<GameData>> searchGames(final String searchQuery) {
         return Observable.defer(() -> Observable.just(converter.convertRawSearch(api
                 .getSearchResults
-                (searchQuery).execute().body()))).subscribeOn(Schedulers.io()).observeOn
+                        (searchQuery).execute().body()))).subscribeOn(Schedulers.io()).observeOn
                 (AndroidSchedulers.mainThread());
     }
 }

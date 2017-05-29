@@ -16,6 +16,7 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
+import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 
 public class MetadataRetriever extends BroadcastReceiver {
 
@@ -25,6 +26,7 @@ public class MetadataRetriever extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Injector.inject(this, context);
     }
 
     public MetadataRetriever() {

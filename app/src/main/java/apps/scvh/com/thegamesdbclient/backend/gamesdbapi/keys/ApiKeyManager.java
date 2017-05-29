@@ -2,7 +2,8 @@ package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys;
 
 
 import android.content.Context;
-import android.preference.PreferenceManager;
+
+import com.securepreferences.SecurePreferences;
 
 import apps.scvh.com.thegamesdbclient.R;
 
@@ -16,7 +17,8 @@ public class ApiKeyManager {
     }
 
     public String getApiKey() {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString
+
+        return new SecurePreferences(context).getString(context.getString
                 (R.string.api_key_setting), "");
     }
 }
