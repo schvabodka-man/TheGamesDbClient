@@ -14,7 +14,6 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawScreenshot;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.DeveloperGetterType;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 
 public class RawDataConverter {
@@ -122,8 +121,8 @@ public class RawDataConverter {
         }
         if (rawData.getDevelopers() != null) {
             try {
-                metadataRetriever.getDeveloper(rawData.getDevelopers().get(0),
-                        DeveloperGetterType.LIGHT).subscribe(data::setDeveloper);// don't need
+                metadataRetriever.getLightDeveloperMetadata(rawData.getDevelopers().get(0))
+                        .subscribe(data::setDeveloper);// don't need
                 // more than 1 developer at time
             } catch (IOException e) {
                 e.printStackTrace();

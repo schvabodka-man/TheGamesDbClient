@@ -22,6 +22,7 @@ import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class Game extends AppCompatActivity {
 
@@ -52,7 +53,8 @@ public class Game extends AppCompatActivity {
     }
 
     private Observable<GameData> receiveGameFromIntent() {
-        return retriever.getGame(getIntent().getIntExtra(getString(R.string.bundle_id), 1));
+        return retriever.getGame(getIntent().getIntExtra(getString(R.string.bundle_id), 1))
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

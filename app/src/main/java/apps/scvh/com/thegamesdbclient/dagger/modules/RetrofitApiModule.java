@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.DeveloperConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
@@ -64,8 +65,10 @@ public class RetrofitApiModule {
     @Provides
     @Named("GameRetriever")
     public GameRetriever retriever(@Named("RetrofitInterface") RetrofitInterface retrofitInterface,
-                                   @Named("GameDataConverter") RawDataConverter rawDataConverter) {
-        return new GameRetriever(retrofitInterface, rawDataConverter);
+                                   @Named("GameDataConverter") RawDataConverter rawDataConverter,
+                                   @Named("DeveloperConverter") DeveloperConverter
+                                               developerConverter) {
+        return new GameRetriever(retrofitInterface, rawDataConverter, developerConverter);
     }
 
     @Provides
@@ -77,15 +80,20 @@ public class RetrofitApiModule {
 
     @Provides
     @Named("KeyUpdater")
-    public ApiKeyUpdater updater(@Named("KeyWriter") ApiKeyWrite writer) {
+    ApiKeyUpdater updater(@Named("KeyWriter") ApiKeyWrite writer) {
         return new ApiKeyUpdater(context, writer);
     }
 
     @Provides
     @Named("KeyWriter")
-    public ApiKeyWrite writer() {
+    ApiKeyWrite writer() {
         return new ApiKeyWrite(context);
     }
 
+    @Provides
+    @Named("DeveloperConverter")
+    DeveloperConverter developerConverter() {
+        return new DeveloperConverter();
+    }
 
 }

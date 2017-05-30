@@ -17,6 +17,9 @@ public interface RetrofitInterface {
     @GET("/games/{Id}?fields=*")
     Call<List<GameRawData>> getGame(@Path("Id") int id);
 
+    @GET("/games/{Id}?fields=name,summary,cover")
+    Call<List<GameRawData>> getGameDataForDeveloperGamesList(@Path("Id") int id);
+
     @GET("/games/?fields=name,summary,cover&limit=50")
     Call<ArrayList<GameRawData>> getSearchResults(@Query("search") String name);
 

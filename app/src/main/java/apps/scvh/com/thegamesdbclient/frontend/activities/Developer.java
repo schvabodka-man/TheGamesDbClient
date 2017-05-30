@@ -1,0 +1,48 @@
+package apps.scvh.com.thegamesdbclient.frontend.activities;
+
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import apps.scvh.com.thegamesdbclient.R;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
+import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
+import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
+import io.reactivex.Observable;
+
+public class Developer extends AppCompatActivity {
+
+    @Inject
+    @Named("DeveloperInjector")
+    DeveloperInjector uiInjector;
+
+    @Inject
+    @Named("GameRetriever")
+    GameRetriever retriever;
+
+    @Inject
+    @Named("DialogManager")
+    LoadingDialogManager dialogManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_developer);
+        Injector.inject(this);
+//        dialogManager.showDialog(getDialog());
+        uiInjector.populateUI(getDataFromIntent(), getDialog());
+    }
+
+    private Observable<GameDeveloper> getDataFromIntent() {
+        return retriever.getDeveloper(getIntent().getIntExtra(getString(R.string.game_dev_key), 1));
+    }
+
+    private ProgressDialog getDialog() {
+        return new ProgressDialog(this);
+    }
+}

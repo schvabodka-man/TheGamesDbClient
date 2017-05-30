@@ -1,9 +1,11 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="padding_in_cardview">16dp</dimen>
     <dimen name="card_view_shadow">4dp</dimen>
     <dimen name="card_name_width">200dp</dimen>
+
     <dimen name="image_top_padding">20dp</dimen>
     <dimen name="game_name_padding">20dp</dimen>
     <dimen name="game_genre_padding">15dp</dimen>
@@ -15,4 +17,10 @@
     <dimen name="stats_layout_bottom_padding">50dp</dimen>
     <dimen name="simillar_games_padding">10dp</dimen>
     <dimen name="api_text_box_padding">16dp</dimen>
+
+    <dimen name="developer_image_top_padding">40dp</dimen>
+    <dimen name="developer_name_padding">20dp</dimen>
+    <dimen name="developer_summary_padding">30dp</dimen>
+    <dimen name="developer_date_padding">15dp</dimen>
+    <dimen name="developer_site_padding">10dp</dimen>
 </resources>

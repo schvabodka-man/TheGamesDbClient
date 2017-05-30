@@ -2,7 +2,7 @@ package apps.scvh.com.thegamesdbclient.frontend;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
+import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.list.SameGamesAdapter;
 import butterknife.BindView;
@@ -24,7 +25,7 @@ import io.reactivex.Observable;
 
 public class GameViewsInjector {
 
-    private Context context;
+    private Game game;
 
     @BindView(R.id.game_image)
     ImageView cover;
@@ -70,7 +71,7 @@ public class GameViewsInjector {
     RecyclerView sameGames;
 
     public GameViewsInjector(Game game) {
-        context = game.getBaseContext();
+        this.game = game;
         ButterKnife.bind(this, game);
     }
 
@@ -79,22 +80,22 @@ public class GameViewsInjector {
             gameName.setText(data1.getName());
             populateCover(cover, data1.getCoverURL());
             if (data1.getRating() != 0) {
-                rating.setText(context.getString(R.string.rating, String.valueOf((int) data1
+                rating.setText(game.getString(R.string.rating, String.valueOf((int) data1
                         .getRating())));
             }
             if (data1.getPopularity() != 0) {
-                popularity.setText(context.getString(R.string.popularity, String.valueOf((int) data1
+                popularity.setText(game.getString(R.string.popularity, String.valueOf((int) data1
                         .getPopularity())));
             }
             if (data1.getReleaseTime() != null) {
-                releaseDate.setText(context.getString(R.string.release_date, String.valueOf(data1
+                releaseDate.setText(game.getString(R.string.release_date, String.valueOf(data1
                                 .getReleaseTime()
                                 .getDayOfMonth()), String.valueOf(data1.getReleaseTime()
                                 .getMonthOfYear()),
                         String.valueOf(data1.getReleaseTime().getYear())));
             }
             if (data1.getTimeToComplete() != null) {
-                timeToBeat.setText(context.getString(R.string.completition_time, String.valueOf
+                timeToBeat.setText(game.getString(R.string.completition_time, String.valueOf
                         (data1
                                 .getTimeToComplete().getMillis() / 3600000)));
             }
@@ -115,33 +116,34 @@ public class GameViewsInjector {
                 esrb.setText(data1.getEsrb());
             }
             if (data1.getGenres() != null) {
-                genre.setText(StringUtils.join(data1.getGenres(), context.getString(R.string
+                genre.setText(StringUtils.join(data1.getGenres(), game.getString(R.string
                         .splitter)));
             }
             if (data1.getGameEngines() != null) {
-                gameEngine.setText(context.getString(R.string.running_on_engine, StringUtils.join
-                        (data1.getGameEngines(), context.getString(R.string.splitter))));
+                gameEngine.setText(game.getString(R.string.running_on_engine, StringUtils.join
+                        (data1.getGameEngines(), game.getString(R.string.splitter))));
             }
             if (data1.getThemes() != null) {
-                theme.setText(StringUtils.join(data1.getThemes(), context.getString(R.string
+                theme.setText(StringUtils.join(data1.getThemes(), game.getString(R.string
                         .splitter)));
             }
             if (data1.getGameModes() != null) {
-                gamemodes.setText(StringUtils.join(data1.getGameModes(), context.getString(R.string
+                gamemodes.setText(StringUtils.join(data1.getGameModes(), game.getString(R.string
                         .splitter)));
             }
             if (data1.getPerspective() != null) {
-                perspectives.setText(StringUtils.join(data1.getPerspective(), context.getString(R
+                perspectives.setText(StringUtils.join(data1.getPerspective(), game.getString(R
                         .string
                         .splitter)));
             }
             if (data1.getGameData() != null) {
-                sameGames.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager
+                sameGames.setLayoutManager(new LinearLayoutManager(game, LinearLayoutManager
                         .HORIZONTAL, false));
-                sameGames.setAdapter(new SameGamesAdapter(data1.getGameData(), context));
+                sameGames.setAdapter(new SameGamesAdapter(data1.getGameData(), game));
             }
             if (data1.getDeveloper() != null) {
                 devName.setText(data1.getDeveloper().getName());
+                initDeveloperClickListener(data1.getDeveloper().getId());
             }
             dialog.dismiss();
         });
@@ -149,9 +151,16 @@ public class GameViewsInjector {
 
     private void populateCover(ImageView view, String coverURL) {
         if (coverURL != null) {
-            Picasso.with(context).load(coverURL).resize(200, 200).into
+            Picasso.with(game).load(coverURL).resize(200, 200).into
                     (view);
         }
     }
 
+    private void initDeveloperClickListener(int id) {
+        devName.setOnClickListener(v -> {
+            Intent intent = new Intent(game, Developer.class);
+            intent.putExtra(game.getString(R.string.game_dev_key), id);
+            game.startActivity(intent);
+        });
+    }
 }

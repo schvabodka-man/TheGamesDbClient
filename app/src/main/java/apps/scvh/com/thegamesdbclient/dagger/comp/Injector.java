@@ -7,6 +7,7 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetrieve
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.modules.FrontendModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.RetrofitApiModule;
+import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
 
@@ -26,6 +27,13 @@ public class Injector {
         component.inject(game);
     }
 
+    public static void inject(Developer developer) {
+        AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
+                RetrofitApiModule(developer.getBaseContext())
+        ).frontendModule(new FrontendModule(developer)).build();
+        component.inject(developer);
+    }
+
     public static void inject(MetadataRetriever retriever, Context context) {
         AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
                 RetrofitApiModule(context)
@@ -39,4 +47,5 @@ public class Injector {
         ).frontendModule(new FrontendModule()).build();
         component.inject(retriever);
     }
+
 }
