@@ -6,8 +6,8 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.R;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyWrite;
@@ -86,5 +86,6 @@ public class RetrofitApiModule {
     public ApiKeyWrite writer() {
         return new ApiKeyWrite(context);
     }
+
 
 }

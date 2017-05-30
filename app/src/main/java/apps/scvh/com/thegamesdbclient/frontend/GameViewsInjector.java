@@ -64,6 +64,8 @@ public class GameViewsInjector {
     TextView esrb;
     @BindView(R.id.pegi)
     TextView pegi;
+    @BindView(R.id.dev_game_name)
+    TextView devName;
     @BindView(R.id.same_games)
     RecyclerView sameGames;
 
@@ -137,6 +139,9 @@ public class GameViewsInjector {
                 sameGames.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager
                         .HORIZONTAL, false));
                 sameGames.setAdapter(new SameGamesAdapter(data1.getGameData(), context));
+            }
+            if (data1.getDeveloper() != null) {
+                devName.setText(data1.getDeveloper().getName());
             }
             dialog.dismiss();
         });

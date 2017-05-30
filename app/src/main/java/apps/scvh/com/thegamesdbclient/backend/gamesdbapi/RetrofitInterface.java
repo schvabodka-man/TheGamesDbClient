@@ -26,8 +26,11 @@ public interface RetrofitInterface {
     @GET("/genres/{Id}/?fields=name")
     Call<List<RawMetadata>> getGenreName(@Path("Id") int id);
 
-    @GET("/genres/{Id}/?fields=name")
+    @GET("/companies/{Id}/?fields=*")
     Call<List<RawDeveloper>> getDeveloper(@Path("Id") int id);
+
+    @GET("/companies/{Id}/?fields=name,id")
+    Call<List<RawDeveloper>> getLightDeveloperData(@Path("Id") int id);
 
     @GET("/game_engines/{Id}/?fields=name")
     Call<List<RawMetadata>> getEngine(@Path("Id") int id);

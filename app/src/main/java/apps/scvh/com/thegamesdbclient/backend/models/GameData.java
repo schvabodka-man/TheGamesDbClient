@@ -25,6 +25,7 @@ public class GameData {
     private ArrayList<String> themes;
     private ArrayList<String> gameModes;
     private ArrayList<GameData> gameData;
+    private GameDeveloper developer;
 
     public int getId() {
         return id;
@@ -189,4 +190,13 @@ public class GameData {
     public void setGameData(ArrayList<GameData> gameData) {
         this.gameData = gameData;
     }
+
+    public GameDeveloper getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(GameDeveloper developer) {
+        this.developer = developer;
+    }
 }
+

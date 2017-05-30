@@ -212,4 +212,6 @@ public class GameRawData {
     public void setSimillarGames(List<Integer> simillarGames) {
         this.simillarGames = simillarGames;
     }
+
+
 }

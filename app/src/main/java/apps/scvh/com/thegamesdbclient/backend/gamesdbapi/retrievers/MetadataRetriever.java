@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import org.joda.time.DateTime;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,8 +17,13 @@ import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.DeveloperGetterType;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
+import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MetadataRetriever extends BroadcastReceiver {
 
@@ -99,5 +106,33 @@ public class MetadataRetriever extends BroadcastReceiver {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Observable<GameDeveloper> getDeveloper(int id, DeveloperGetterType type) throws
+            IOException {
+        return Observable.defer(() -> {
+            RawDeveloper developer;
+            GameDeveloper developerFinal = new GameDeveloper();
+            if (type == DeveloperGetterType.LIGHT) {
+                developer = retrofitInterface.getLightDeveloperData(id).execute().body().get(0);
+            } else {
+                developer = retrofitInterface.getDeveloper(id).execute().body().get(0);
+            }
+            developerFinal.setName(developer.getName());
+            developerFinal.setId(developer.getId());
+            if (developer.getDescription() != null) {
+                developerFinal.setDescription(developer.getDescription());
+            }
+            if (developer.getWebsite() != null) {
+                developerFinal.setWebsite(developer.getWebsite());
+            }
+            if (developer.getCover() != null) {
+                developerFinal.setCoverLink(developer.getCover().getCoverUrl());
+            }
+            if (developer.getDate() != 0) {
+                developerFinal.setDate(new DateTime(developer.getDate()));
+            }
+            return Observable.just(developerFinal);
+        }).subscribeOn(Schedulers.newThread());
     }
 }

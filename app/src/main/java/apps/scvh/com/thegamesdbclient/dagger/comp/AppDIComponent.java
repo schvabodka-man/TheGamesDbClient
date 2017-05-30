@@ -15,8 +15,6 @@ import dagger.Component;
 public interface AppDIComponent {
     void inject(Search search);
     void inject(Game game);
-
     void inject(MetadataRetriever retriever);
-
     void inject(GameRetriever retriever);
 }

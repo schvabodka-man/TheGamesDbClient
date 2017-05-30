@@ -1,28 +1,19 @@
-package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata;
+package apps.scvh.com.thegamesdbclient.backend.models;
 
 
-import com.google.gson.annotations.SerializedName;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawCover;
+public class GameDeveloper {
 
-public class RawDeveloper {
-
-    @SerializedName("id")
     private int id;
-    @SerializedName("name")
     private String name;
-    @SerializedName("website")
     private String website;
-    @SerializedName("description")
     private String description;
-    @SerializedName("developed")
-    private List<Integer> games;
-    @SerializedName("start_date")
-    private long date;
-    @SerializedName("logo")
-    private RawCover cover;
+    private List<GameData> games;
+    private DateTime date;
+    private String coverLink;
 
     public int getId() {
         return id;
@@ -56,27 +47,27 @@ public class RawDeveloper {
         this.description = description;
     }
 
-    public List<Integer> getGames() {
+    public List<GameData> getGames() {
         return games;
     }
 
-    public void setGames(List<Integer> games) {
+    public void setGames(List<GameData> games) {
         this.games = games;
     }
 
-    public long getDate() {
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
-    public RawCover getCover() {
-        return cover;
+    public String getCoverLink() {
+        return coverLink;
     }
 
-    public void setCover(RawCover cover) {
-        this.cover = cover;
+    public void setCoverLink(String coverLink) {
+        this.coverLink = coverLink;
     }
 }
