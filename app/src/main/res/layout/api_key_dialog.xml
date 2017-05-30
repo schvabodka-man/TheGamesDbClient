@@ -9,7 +9,7 @@
         android:paddingStart="@dimen/api_text_box_padding"
         android:paddingEnd="@dimen/api_text_box_padding"
         android:hint="@string/key"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
