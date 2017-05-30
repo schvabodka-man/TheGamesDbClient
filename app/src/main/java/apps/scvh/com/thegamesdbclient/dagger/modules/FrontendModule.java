@@ -43,7 +43,8 @@ public class FrontendModule {
     @Provides
     @Named("ApiDialogManager")
     ApiKeyDialogManager apiKeyDialogManager(@Named("KeyUpdater") ApiKeyUpdater updater, @Named
-            ("ApiKey") ApiKeyManager manager) {
-        return new ApiKeyDialogManager(activity, updater, manager);
+            ("ApiKey") ApiKeyManager manager, @Named("DialogManager") LoadingDialogManager
+            dialogManager) {
+        return new ApiKeyDialogManager(activity, updater, manager, dialogManager);
     }
 }

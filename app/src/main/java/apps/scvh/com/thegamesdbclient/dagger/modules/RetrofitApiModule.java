@@ -50,7 +50,7 @@ public class RetrofitApiModule {
             Request request = chain.request().newBuilder().addHeader(context.getString(R
                     .string.json_key), context.getString(R.string.json_value)).addHeader(context
                             .getString(R.string.api_header),
-                    apiKeyManager().getApiKey()).build();
+                    apiKeyManager().getApiKey().blockingFirst()).build();
             return chain.proceed(request);
         }).build();
         Retrofit retrofit = new Retrofit.Builder()

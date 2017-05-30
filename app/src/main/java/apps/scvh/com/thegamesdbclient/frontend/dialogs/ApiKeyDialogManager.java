@@ -2,6 +2,7 @@ package apps.scvh.com.thegamesdbclient.frontend.dialogs;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,24 +12,32 @@ import android.widget.EditText;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 public class ApiKeyDialogManager {
 
     private Activity activity;
     private ApiKeyUpdater updater;
     private ApiKeyManager getter;
+    private LoadingDialogManager loadingManager;
 
     private AlertDialog dialog;
 
-    public ApiKeyDialogManager(Activity activity, ApiKeyUpdater updater, ApiKeyManager getter) {
+    public ApiKeyDialogManager(Activity activity, ApiKeyUpdater updater, ApiKeyManager getter,
+                               LoadingDialogManager loadingManager) {
         this.activity = activity;
         this.updater = updater;
         this.getter = getter;
+        this.loadingManager = loadingManager;
     }
 
     public void showDialog() {
-        dialog = buildDialog(activity, getter.getApiKey());
-        dialog.show();
+        getter.getApiKey().subscribe(apiKey -> {
+            loadingManager.showDialog(new ProgressDialog(activity));
+            dialog = buildDialog(activity, apiKey);
+            dialog.show();
+        });
     }
 
     private void closeDialog() {
@@ -39,6 +48,7 @@ public class ApiKeyDialogManager {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         dialogBuilder.setTitle(activity.getBaseContext().getString(R.string.enter_api_key));
         dialogBuilder.setView(generateDialogView(activity, key));
+        loadingManager.hideDialog();
         return dialogBuilder.create();
     }
 
@@ -53,8 +63,11 @@ public class ApiKeyDialogManager {
 
     private void initButtonClickListener(Button button, EditText text) {
         button.setOnClickListener(v -> {
-            updater.updateApiKey(text.getText().toString());
             closeDialog();
+            loadingManager.showDialog(new ProgressDialog(activity));
+            updater.updateApiKey(Observable.just(text.getText().toString()).subscribeOn
+                    (Schedulers.computation()));
+            loadingManager.hideDialog();
         });
     }
 
