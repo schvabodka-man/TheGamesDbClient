@@ -65,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingTop="@dimen/developer_site_padding"
+                    android:paddingBottom="@dimen/developer_site_padding"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/small_text_size"/>

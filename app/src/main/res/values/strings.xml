@@ -7,6 +7,7 @@
     <string name="rating">Rating \n %s</string>
     <string name="popularity">Popularity \n %s</string>
     <string name="release_date">Released \n %1$s/%2$s/%3$s</string>
+    <string name="foundation_date">Founded \n %1$s/%2$s/%3$s</string>
     <string name="running_on_engine">Running on %s</string>
     <string name="completition_time">Time to beat \n %s hours</string>
     <string name="story">Story</string>

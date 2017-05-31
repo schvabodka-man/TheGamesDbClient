@@ -133,12 +133,12 @@ public class RawDataConverter {
     private void convertLightGameData(GameRawData rawData, GameData data) {
         if (rawData.getSimillarGames() != null) {
             Iterator<Integer> iterator = rawData.getSimillarGames().iterator();
-            ArrayList<GameData> simillarGamesConverted = new ArrayList<>();
+            ArrayList<GameData> similarGamesConverted = new ArrayList<>();
             while (iterator.hasNext()) {
-                simillarGamesConverted.add(convertRawData(metadataRetriever.getRawSimillarGameData
+                similarGamesConverted.add(convertRawData(metadataRetriever.getRawSimillarGameData
                         (iterator.next())));
             }
-            data.setGameData(simillarGamesConverted);
+            data.setGameData(similarGamesConverted);
         }
     }
 

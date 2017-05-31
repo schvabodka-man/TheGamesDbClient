@@ -34,15 +34,11 @@ public class Developer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developer);
         Injector.inject(this);
-//        dialogManager.showDialog(getDialog());
-        uiInjector.populateUI(getDataFromIntent(), getDialog());
+        dialogManager.showDialog(new ProgressDialog(this));
+        uiInjector.populateUI(getDataFromIntent(), dialogManager.getDialog());
     }
 
     private Observable<GameDeveloper> getDataFromIntent() {
         return retriever.getDeveloper(getIntent().getIntExtra(getString(R.string.game_dev_key), 1));
-    }
-
-    private ProgressDialog getDialog() {
-        return new ProgressDialog(this);
     }
 }
