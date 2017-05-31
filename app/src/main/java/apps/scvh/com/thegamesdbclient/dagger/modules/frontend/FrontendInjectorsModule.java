@@ -5,10 +5,10 @@ import android.app.Activity;
 
 import javax.inject.Named;
 
-import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import dagger.Module;
 import dagger.Provides;

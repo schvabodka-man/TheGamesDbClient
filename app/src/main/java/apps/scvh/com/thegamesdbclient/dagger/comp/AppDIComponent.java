@@ -10,9 +10,9 @@ import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.KeysModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.RetrieversModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.frontend.FrontendDialogsModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.frontend.FrontendInjectorsModule;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Search;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Search;
 import dagger.Component;
 
 @Singleton

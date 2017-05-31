@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".frontend.activities.Search"
+            android:name=".frontend.ui.activities.Search"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,7 +24,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/search"/>
         </activity>
-        <activity android:name=".frontend.activities.Game"/>
+        <activity android:name=".frontend.ui.activities.Game"/>
 
         <receiver
             android:name=".backend.gamesdbapi.retrievers.GameRetriever"
@@ -41,7 +41,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".frontend.activities.Developer">
+        <activity android:name=".frontend.ui.activities.Developer">
         </activity>
     </application>
 

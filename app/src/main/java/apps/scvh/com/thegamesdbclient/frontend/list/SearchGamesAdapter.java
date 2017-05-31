@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 
 public class SearchGamesAdapter extends RecyclerView.Adapter<SearchGamesAdapter.ViewHolder> {
 

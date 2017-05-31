@@ -16,9 +16,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
-import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.list.SameGamesAdapter;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
+import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import butterknife.BindView;
 import butterknife.ButterKnife;

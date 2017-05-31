@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/colorPrimary"
+              tools:context=".frontend.ui.fragments.game.UpperGame">
+
+    <TextView
+        android:id="@+id/dev_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/big_text_size"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/game_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/image_top_padding"/>
+
+    <TextView
+        android:id="@+id/game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/game_name_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/big_text_size"/>
+
+    <TextView
+        android:id="@+id/game_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/game_genre_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/little_text_size"/>
+
+    <TextView
+        android:id="@+id/theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/small_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/little_text_size"/>
+
+    <TextView
+        android:id="@+id/game_engine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/game_genre_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/little_text_size"/>
+
+    <TextView
+        android:id="@+id/gamemodes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/small_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/little_text_size"/>
+
+    <TextView
+        android:id="@+id/perspectives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/small_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/little_text_size"/>
+
+    <LinearLayout
+        android:id="@+id/same_games"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/similar_games_padding"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/stats_layout_bottom_padding"
+        android:paddingTop="@dimen/stats_layout_padding"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_in_stats_block"
+            android:paddingStart="@dimen/padding_in_stats_block"
+            android:textColor="@color/white"/>
+
+        <!--no need in beginning padding  here and below-->
+
+        <TextView
+            android:id="@+id/popularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_in_stats_block"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_in_stats_block"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/time_to_beat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_in_stats_block"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>
