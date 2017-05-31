@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,7 +57,7 @@ public class Search extends AppCompatActivity {
         Injector.inject(this);
         ButterKnife.bind(this);
         ToolbarStylizer.stylizeSearchToolbar(getSupportActionBar());
-        recyclerViewWorker.setLayout(recycler);
+        recyclerViewWorker.initRecycler(recycler);
     }
 
     @Override
@@ -95,10 +96,10 @@ public class Search extends AppCompatActivity {
     private void handleSearch(String query) {
         retriever.searchGames(query).subscribe(games -> {
             if (games.size() != 0) {
-                recyclerViewWorker.initRecycler(new SearchGamesAdapter(games, this));
+                recyclerViewWorker.showRecycler(new SearchGamesAdapter(games, this),
+                        LinearLayoutManager.VERTICAL);
                 loadingManager.hideDialog();
             } else {
-                recyclerViewWorker.removeRecycler();
                 loadingManager.hideDialog();
                 Toaster.showNothingHasBeenFound(this);
             }

@@ -5,9 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -19,6 +19,7 @@ import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.list.SameGamesAdapter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
@@ -68,11 +69,19 @@ public class GameViewsInjector {
     @BindView(R.id.dev_game_name)
     TextView devName;
     @BindView(R.id.same_games)
-    RecyclerView sameGames;
+    LinearLayout sameGames;
+
+    private RecyclerViewWorker viewWorker;
 
     public GameViewsInjector(Game game) {
         this.game = game;
         ButterKnife.bind(this, game);
+    }
+
+    public void setViewWorker(RecyclerViewWorker viewWorker) {
+        this.viewWorker = viewWorker;
+        viewWorker.initRecycler(sameGames);
+
     }
 
     public void populateUI(Observable<GameData> data, ProgressDialog dialog) {
@@ -136,17 +145,20 @@ public class GameViewsInjector {
                         .string
                         .splitter)));
             }
-            if (data1.getGameData() != null) {
-                sameGames.setLayoutManager(new LinearLayoutManager(game, LinearLayoutManager
-                        .HORIZONTAL, false));
-                sameGames.setAdapter(new SameGamesAdapter(data1.getGameData(), game));
-            }
+            populateSameGames(data1);
             if (data1.getDeveloper() != null) {
                 devName.setText(data1.getDeveloper().getName());
                 initDeveloperClickListener(data1.getDeveloper().getId());
             }
             dialog.dismiss();
         });
+    }
+
+    private void populateSameGames(GameData data) {
+        if (data.getGameData() != null) {
+            viewWorker.showRecycler(new SameGamesAdapter(data.getGameData(), game),
+                    LinearLayoutManager.HORIZONTAL);
+        }
     }
 
     private void populateCover(ImageView view, String coverURL) {

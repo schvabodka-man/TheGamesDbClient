@@ -20,6 +20,7 @@ import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -42,6 +43,10 @@ public class Game extends AppCompatActivity {
     @Named("DialogManager")
     LoadingDialogManager dialogManager;
 
+    @Inject
+    @Named("RecyclerProvider")
+    RecyclerViewWorker recyclerViewWorker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class Game extends AppCompatActivity {
         Injector.inject(this);
         ToolbarStylizer.stylizeToolbar(getSupportActionBar());
         showProgressDialog(new ProgressDialog(this));
+        viewsInjector.setViewWorker(recyclerViewWorker);
         viewsInjector.populateUI(receiveGameFromIntent(), dialogManager.getDialog());
     }
 
