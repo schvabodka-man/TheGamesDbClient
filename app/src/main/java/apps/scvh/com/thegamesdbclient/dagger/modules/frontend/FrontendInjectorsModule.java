@@ -9,7 +9,7 @@ import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
-import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewGetter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import dagger.Module;
 import dagger.Provides;
 
@@ -39,8 +39,8 @@ public class FrontendInjectorsModule {
 
     @Provides
     @Named("RecyclerProvider")
-    public RecyclerViewGetter recyclerViewGetter() {
-        return new RecyclerViewGetter(activity);
+    public RecyclerViewWorker recyclerViewGetter() {
+        return new RecyclerViewWorker(activity);
     }
 
 }

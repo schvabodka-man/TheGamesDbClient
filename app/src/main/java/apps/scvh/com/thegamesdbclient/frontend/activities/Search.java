@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +21,7 @@ import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
-import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewGetter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
 import butterknife.BindView;
@@ -45,13 +44,10 @@ public class Search extends AppCompatActivity {
 
     @Inject
     @Named("RecyclerProvider")
-    RecyclerViewGetter recyclerViewGetter;
+    RecyclerViewWorker recyclerViewWorker;
 
     @BindView(R.id.search_list)
     LinearLayout recycler;
-
-    private RecyclerView holder;
-    private boolean searchedFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +56,7 @@ public class Search extends AppCompatActivity {
         Injector.inject(this);
         ButterKnife.bind(this);
         ToolbarStylizer.stylizeSearchToolbar(getSupportActionBar());
-        searchedFlag = false;
+        recyclerViewWorker.setLayout(recycler);
     }
 
     @Override
@@ -98,28 +94,16 @@ public class Search extends AppCompatActivity {
 
     private void handleSearch(String query) {
         retriever.searchGames(query).subscribe(games -> {
-            if (!searchedFlag) { //
-                initRecycler(); //this is really nice optimization IMO
-            } //
             if (games.size() != 0) {
-                holder.setAdapter(new SearchGamesAdapter(games, this));
+                recyclerViewWorker.initRecycler(new SearchGamesAdapter(games, this));
                 loadingManager.hideDialog();
             } else {
-                searchedFlag = false;
-                removeRecycler();
+                recyclerViewWorker.removeRecycler();
                 loadingManager.hideDialog();
                 Toaster.showNothingHasBeenFound(this);
             }
         });
     }
 
-    private void initRecycler() {
-        holder = recyclerViewGetter.getRecyclerView();
-        recycler.addView(holder);
-    }
 
-    private void removeRecycler() {
-        recycler.removeView(holder);
-        holder = null;
-    }
 }
