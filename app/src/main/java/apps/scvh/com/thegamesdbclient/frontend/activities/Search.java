@@ -19,6 +19,7 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
+import apps.scvh.com.thegamesdbclient.frontend.ToolbarStylizer;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
@@ -49,7 +50,7 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Injector.inject(this);
         ButterKnife.bind(this);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ToolbarStylizer.stylizeSearchToolbar(getSupportActionBar());
         recycler.setLayoutManager(new LinearLayoutManager(this));
     }
 

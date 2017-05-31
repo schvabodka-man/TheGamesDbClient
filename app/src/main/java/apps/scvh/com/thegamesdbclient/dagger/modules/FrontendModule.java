@@ -8,12 +8,12 @@ import javax.inject.Singleton;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
-import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
+import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
 import dagger.Module;
 import dagger.Provides;
 

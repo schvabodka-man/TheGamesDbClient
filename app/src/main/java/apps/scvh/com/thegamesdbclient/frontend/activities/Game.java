@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
@@ -18,9 +17,10 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
-import apps.scvh.com.thegamesdbclient.frontend.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.ToolbarStylizer;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
+import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -47,7 +47,7 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Injector.inject(this);
-        initActionBar(getSupportActionBar());
+        ToolbarStylizer.stylizeToolbar(getSupportActionBar());
         showProgressDialog(new ProgressDialog(this));
         viewsInjector.populateUI(receiveGameFromIntent(), dialogManager.getDialog());
     }
@@ -72,13 +72,6 @@ public class Game extends AppCompatActivity {
             apiManager.showDialog();
         }
         return true;
-    }
-
-    private void initActionBar(ActionBar bar) {
-        bar.setShowHideAnimationEnabled(false);
-        bar.setDisplayShowTitleEnabled(false);
-        bar.setElevation(0);
-        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initShareProvider(ShareActionProvider provider) {

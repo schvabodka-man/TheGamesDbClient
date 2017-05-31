@@ -11,6 +11,7 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
+import apps.scvh.com.thegamesdbclient.frontend.ToolbarStylizer;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
 import io.reactivex.Observable;
@@ -34,6 +35,7 @@ public class Developer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developer);
         Injector.inject(this);
+        ToolbarStylizer.stylizeToolbar(getSupportActionBar());
         dialogManager.showDialog(new ProgressDialog(this));
         uiInjector.populateUI(getDataFromIntent(), dialogManager.getDialog());
     }
