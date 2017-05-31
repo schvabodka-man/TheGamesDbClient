@@ -12,6 +12,7 @@ import android.widget.EditText;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
+import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -63,11 +64,15 @@ public class ApiKeyDialogManager {
 
     private void initButtonClickListener(Button button, EditText text) {
         button.setOnClickListener(v -> {
-            closeDialog();
-            loadingManager.showDialog(new ProgressDialog(activity));
-            updater.updateApiKey(Observable.just(text.getText().toString()).subscribeOn
-                    (Schedulers.computation()));
-            loadingManager.hideDialog();
+            if (text.getText().toString().length() != 0) {
+                closeDialog();
+                loadingManager.showDialog(new ProgressDialog(activity));
+                updater.updateApiKey(Observable.just(text.getText().toString()).subscribeOn
+                        (Schedulers.computation()));
+                loadingManager.hideDialog();
+            } else {
+                Toaster.showEmptyKeyToast(activity);
+            }
         });
     }
 

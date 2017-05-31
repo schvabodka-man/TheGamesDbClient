@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import javax.inject.Inject;
@@ -19,10 +19,12 @@ import javax.inject.Named;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
-import apps.scvh.com.thegamesdbclient.frontend.ToolbarStylizer;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewGetter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
+import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -41,8 +43,15 @@ public class Search extends AppCompatActivity {
     @Named("ApiDialogManager")
     ApiKeyDialogManager apiManager;
 
+    @Inject
+    @Named("RecyclerProvider")
+    RecyclerViewGetter recyclerViewGetter;
+
     @BindView(R.id.search_list)
-    RecyclerView recycler;
+    LinearLayout recycler;
+
+    private RecyclerView holder;
+    private boolean searchedFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,7 @@ public class Search extends AppCompatActivity {
         Injector.inject(this);
         ButterKnife.bind(this);
         ToolbarStylizer.stylizeSearchToolbar(getSupportActionBar());
-        recycler.setLayoutManager(new LinearLayoutManager(this));
+        searchedFlag = false;
     }
 
     @Override
@@ -89,8 +98,28 @@ public class Search extends AppCompatActivity {
 
     private void handleSearch(String query) {
         retriever.searchGames(query).subscribe(games -> {
-            recycler.setAdapter(new SearchGamesAdapter(games, this));
-            loadingManager.hideDialog();
+            if (!searchedFlag) { //
+                initRecycler(); //this is really nice optimization IMO
+            } //
+            if (games.size() != 0) {
+                holder.setAdapter(new SearchGamesAdapter(games, this));
+                loadingManager.hideDialog();
+            } else {
+                searchedFlag = false;
+                removeRecycler();
+                loadingManager.hideDialog();
+                Toaster.showNothingHasBeenFound(this);
+            }
         });
+    }
+
+    private void initRecycler() {
+        holder = recyclerViewGetter.getRecyclerView();
+        recycler.addView(holder);
+    }
+
+    private void removeRecycler() {
+        recycler.removeView(holder);
+        holder = null;
     }
 }

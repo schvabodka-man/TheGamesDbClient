@@ -1,4 +1,4 @@
-package apps.scvh.com.thegamesdbclient.frontend;
+package apps.scvh.com.thegamesdbclient.frontend.utils;
 
 
 import android.support.v7.app.ActionBar;
