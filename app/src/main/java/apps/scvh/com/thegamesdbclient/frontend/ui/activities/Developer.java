@@ -13,6 +13,7 @@ import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
+import apps.scvh.com.thegamesdbclient.frontend.utils.ShareManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
 import io.reactivex.Observable;
 
@@ -29,6 +30,10 @@ public class Developer extends AppCompatActivity {
     @Inject
     @Named("DialogManager")
     LoadingDialogManager dialogManager;
+
+    @Inject
+    @Named("ShareManager")
+    ShareManager shareManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

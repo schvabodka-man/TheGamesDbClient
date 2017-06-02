@@ -20,9 +20,9 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyChecker;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
-import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.list.SearchGamesAdapter;
+import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
@@ -41,16 +41,16 @@ public class Search extends AppCompatActivity {
     LoadingDialogManager loadingManager;
 
     @Inject
-    @Named("ApiDialogManager")
-    ApiKeyDialogManager apiManager;
-
-    @Inject
     @Named("RecyclerProvider")
     RecyclerViewWorker recyclerViewWorker;
 
     @Inject
     @Named("KeyChecker")
     ApiKeyChecker apiKeyChecker;
+
+    @Inject
+    @Named("MenuManager")
+    MenuManager menuManager;
 
     @BindView(R.id.search_list)
     LinearLayout recycler;
@@ -76,9 +76,7 @@ public class Search extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.search_menu) {
-            apiManager.showDialog();
-        }
+        menuManager.searchMenuClickManager(item);
         return true;
     }
 

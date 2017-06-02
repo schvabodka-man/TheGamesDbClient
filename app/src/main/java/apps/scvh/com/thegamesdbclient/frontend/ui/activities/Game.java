@@ -1,7 +1,6 @@
 package apps.scvh.com.thegamesdbclient.frontend.ui.activities;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +16,11 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
-import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.LoadingDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
+import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
+import apps.scvh.com.thegamesdbclient.frontend.utils.ShareManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,16 +36,20 @@ public class Game extends AppCompatActivity {
     GameViewsInjector viewsInjector;
 
     @Inject
-    @Named("ApiDialogManager")
-    ApiKeyDialogManager apiManager;
-
-    @Inject
     @Named("DialogManager")
     LoadingDialogManager dialogManager;
 
     @Inject
+    @Named("MenuManager")
+    MenuManager menuManager;
+
+    @Inject
     @Named("RecyclerProvider")
     RecyclerViewWorker recyclerViewWorker;
+
+    @Inject
+    @Named("ShareManager")
+    ShareManager shareManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,24 +78,13 @@ public class Game extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.search_in_game) {
-            apiManager.showDialog();
-        }
+        menuManager.gameDevMenuClickManager(item);
         return true;
     }
 
     private void initShareProvider(ShareActionProvider provider) {
-        receiveGameFromIntent().subscribe(data1 -> setShareIntent(data1.getUrl(), provider));
-    }
-
-    private void setShareIntent(String url, ShareActionProvider actionProvider) {
-        if (actionProvider != null) {
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType(getString(R.string.mime_type_for_sharing));
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, url);
-            actionProvider.setShareIntent(Intent.createChooser(sharingIntent, getString(R.string
-                    .share_url)));
-        }
+        receiveGameFromIntent().subscribe(data1 -> shareManager.setShareIntent(data1.getUrl(),
+                provider));
     }
 
     private void showProgressDialog(ProgressDialog dialog) {

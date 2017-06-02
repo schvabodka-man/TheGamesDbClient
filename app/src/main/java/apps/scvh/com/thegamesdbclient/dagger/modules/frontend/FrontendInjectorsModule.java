@@ -5,11 +5,14 @@ import android.app.Activity;
 
 import javax.inject.Named;
 
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
 import apps.scvh.com.thegamesdbclient.frontend.injectors.GameViewsInjector;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
+import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
+import apps.scvh.com.thegamesdbclient.frontend.utils.ShareManager;
 import dagger.Module;
 import dagger.Provides;
 
@@ -39,8 +42,21 @@ public class FrontendInjectorsModule {
 
     @Provides
     @Named("RecyclerProvider")
-    public RecyclerViewWorker recyclerViewGetter() {
+    RecyclerViewWorker recyclerViewGetter() {
         return new RecyclerViewWorker(activity);
+    }
+
+    @Provides
+    @Named("ShareManager")
+    public ShareManager shareManager() {
+        return new ShareManager(activity);
+    }
+
+    @Provides
+    @Named("MenuManager")
+    public MenuManager menuManager(@Named("ApiDialogManager")
+                                           ApiKeyDialogManager dialogManager) {
+        return new MenuManager(dialogManager);
     }
 
 }
