@@ -27,7 +27,7 @@ public class FrontendDialogsModule {
     @Provides
     @Named("DialogManager")
     LoadingDialogManager dialogManager() {
-        return new LoadingDialogManager(activity.getBaseContext());
+        return new LoadingDialogManager(activity);
     }
 
     @Provides

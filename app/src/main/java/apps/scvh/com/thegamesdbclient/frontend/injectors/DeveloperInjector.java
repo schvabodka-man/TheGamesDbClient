@@ -19,7 +19,6 @@ import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class DeveloperInjector {
 
@@ -45,7 +44,7 @@ public class DeveloperInjector {
     }
 
     public void populateUI(Observable<GameDeveloper> developerObservable, ProgressDialog dialog) {
-        developerObservable.observeOn(AndroidSchedulers.mainThread()).subscribe(developer1 -> {
+        developerObservable.subscribe(developer1 -> {
             if (developer1.getCoverLink() != null) {
                 Picasso.with(developer).load(developer1.getCoverLink().replace(developer
                         .getString(R.string
@@ -63,9 +62,9 @@ public class DeveloperInjector {
             if (developer1.getWebsite() != null) {
                 site.setText(developer1.getWebsite());
             }
-            if (developer1.getGames().size() != 0) {
-                setGamesList((ArrayList<GameData>) developer1.getGames());
-            }
+//            if (developer1.getGames().size() != 0) {
+//                setGamesList((ArrayList<GameData>) developer1.getGames());
+//            }
             if (developer1.getDate() != null) {
                 date.setText(developer.getString(R.string.foundation_date, String.valueOf(developer1
                         .getDate().getDayOfMonth()), String.valueOf(developer1.getDate()

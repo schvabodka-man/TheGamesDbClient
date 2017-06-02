@@ -1,25 +1,27 @@
 package apps.scvh.com.thegamesdbclient.frontend.dialogs;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 
 import apps.scvh.com.thegamesdbclient.R;
 
 public class LoadingDialogManager {
 
     private ProgressDialog dialog;
-    private Context context;
+    private Activity activity;
 
-    public LoadingDialogManager(Context context) {
-        this.context = context;
+    public LoadingDialogManager(Activity activity) {
+        this.activity = activity;
     }
 
     public void showDialog(ProgressDialog dialog) {
-        this.dialog = dialog;
-        this.dialog.setTitle(context.getString(R.string.loading));
-        this.dialog.setMessage(context.getString(R.string.please_wait));
-        this.dialog.show();
+        basicDialog(dialog);
+    }
+
+    public void showDialogWithClickListener(ProgressDialog dialog) {
+        dialog.setOnCancelListener(dialog1 -> activity.finish());
+        basicDialog(dialog);
     }
 
     public void hideDialog() {
@@ -28,5 +30,12 @@ public class LoadingDialogManager {
 
     public ProgressDialog getDialog() {
         return dialog;
+    }
+
+    private void basicDialog(ProgressDialog dialog) {
+        this.dialog = dialog;
+        this.dialog.setTitle(activity.getString(R.string.loading));
+        this.dialog.setMessage(activity.getString(R.string.please_wait));
+        this.dialog.show();
     }
 }

@@ -56,7 +56,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         Injector.inject(this);
         ToolbarStylizer.stylizeToolbar(getSupportActionBar());
-        showProgressDialog(new ProgressDialog(this));
+        dialogManager.showDialogWithClickListener(new ProgressDialog(this));
         viewsInjector.setViewWorker(recyclerViewWorker);
         viewsInjector.populateUI(receiveGameIDFromIntent(), dialogManager.getDialog());
     }
@@ -84,8 +84,4 @@ public class Game extends AppCompatActivity {
                 provider));
     }
 
-    private void showProgressDialog(ProgressDialog dialog) {
-        dialog.setOnCancelListener(dialog1 -> finish());
-        dialogManager.showDialog(dialog);
-    }
 }
