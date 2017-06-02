@@ -48,15 +48,15 @@ public class FrontendInjectorsModule {
 
     @Provides
     @Named("ShareManager")
-    public ShareManager shareManager() {
+    ShareManager shareManager() {
         return new ShareManager(activity);
     }
 
     @Provides
     @Named("MenuManager")
-    public MenuManager menuManager(@Named("ApiDialogManager")
+    MenuManager menuManager(@Named("ApiDialogManager")
                                            ApiKeyDialogManager dialogManager) {
-        return new MenuManager(dialogManager);
+        return new MenuManager(dialogManager, activity);
     }
 
 }

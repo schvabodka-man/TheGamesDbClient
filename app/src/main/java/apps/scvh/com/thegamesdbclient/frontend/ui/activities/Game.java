@@ -6,7 +6,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import javax.inject.Inject;
@@ -59,19 +58,17 @@ public class Game extends AppCompatActivity {
         ToolbarStylizer.stylizeToolbar(getSupportActionBar());
         showProgressDialog(new ProgressDialog(this));
         viewsInjector.setViewWorker(recyclerViewWorker);
-        viewsInjector.populateUI(receiveGameFromIntent(), dialogManager.getDialog());
+        viewsInjector.populateUI(receiveGameIDFromIntent(), dialogManager.getDialog());
     }
 
-    private Observable<GameData> receiveGameFromIntent() {
+    private Observable<GameData> receiveGameIDFromIntent() {
         return retriever.getGame(getIntent().getIntExtra(getString(R.string.bundle_id), 1))
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.game_menu, menu);
-        MenuItem searchButton = menu.findItem(R.id.menu_item_share);
+        MenuItem searchButton = menuManager.initMenuForGameDev(menu);
         initShareProvider((ShareActionProvider) MenuItemCompat.getActionProvider(searchButton));
         return true;
     }
@@ -83,7 +80,7 @@ public class Game extends AppCompatActivity {
     }
 
     private void initShareProvider(ShareActionProvider provider) {
-        receiveGameFromIntent().subscribe(data1 -> shareManager.setShareIntent(data1.getUrl(),
+        receiveGameIDFromIntent().subscribe(data1 -> shareManager.setShareIntent(data1.getUrl(),
                 provider));
     }
 

@@ -2,16 +2,13 @@ package apps.scvh.com.thegamesdbclient.frontend.ui.activities;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -68,9 +65,7 @@ public class Search extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-        searchInit(menu);
+        menuManager.initMenuForSearch(menu);
         return true;
     }
 
@@ -87,14 +82,6 @@ public class Search extends AppCompatActivity {
             loadingManager.showDialog(new ProgressDialog(this));
             handleSearch(intent.getStringExtra(SearchManager.QUERY));
         }
-    }
-
-    private void searchInit(Menu menu) {
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setIconifiedByDefault(false);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
     }
 
     private void handleSearch(String query) {
