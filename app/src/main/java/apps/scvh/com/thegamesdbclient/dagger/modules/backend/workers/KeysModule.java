@@ -4,9 +4,11 @@ import android.content.Context;
 
 import javax.inject.Named;
 
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyChecker;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyWrite;
+import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,7 +23,7 @@ public class KeysModule {
 
     @Provides
     @Named("ApiKey")
-    public ApiKeyManager apiKeyManager() {
+    ApiKeyManager apiKeyManager() {
         return new ApiKeyManager(context);
     }
 
@@ -35,5 +37,12 @@ public class KeysModule {
     @Named("KeyWriter")
     ApiKeyWrite writer() {
         return new ApiKeyWrite(context);
+    }
+
+    @Provides
+    @Named("KeyChecker")
+    ApiKeyChecker keyChecker(@Named("ApiKey") ApiKeyManager keyManager, @Named
+            ("ApiDialogManager") ApiKeyDialogManager dialogManager) {
+        return new ApiKeyChecker(dialogManager, keyManager);
     }
 }

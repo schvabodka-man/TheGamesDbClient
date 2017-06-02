@@ -49,6 +49,7 @@ public class ApiKeyDialogManager {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         dialogBuilder.setTitle(activity.getBaseContext().getString(R.string.enter_api_key));
         dialogBuilder.setView(generateDialogView(activity, key));
+        dialogBuilder.setCancelable(false);
         loadingManager.hideDialog();
         return dialogBuilder.create();
     }

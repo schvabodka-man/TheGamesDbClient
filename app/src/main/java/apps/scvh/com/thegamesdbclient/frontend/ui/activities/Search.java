@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.R;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyChecker;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
@@ -47,6 +48,10 @@ public class Search extends AppCompatActivity {
     @Named("RecyclerProvider")
     RecyclerViewWorker recyclerViewWorker;
 
+    @Inject
+    @Named("KeyChecker")
+    ApiKeyChecker apiKeyChecker;
+
     @BindView(R.id.search_list)
     LinearLayout recycler;
 
@@ -56,6 +61,7 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Injector.inject(this);
         ButterKnife.bind(this);
+        apiKeyChecker.loadDialogIfKeyIsNull();
         ToolbarStylizer.stylizeSearchToolbar(getSupportActionBar());
         recyclerViewWorker.initRecycler(recycler);
     }
