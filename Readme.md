@@ -1,12 +1,12 @@
 # IGDB Client
-<div class="inline-block">
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png" height="600" width="400" ></a>
+<div style="max-width: 20%;max-height: 20%;display: inline-block;">
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png" height="400" width="200" ></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png"  height="600" width="400" ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png"  height="400" width="200" ></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png" height="600" width="400" ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png" height="400" width="200" ></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png" height="600" width="400" ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png" height="400" width="200" ></a>
 </div>
 
 ## What is this?
