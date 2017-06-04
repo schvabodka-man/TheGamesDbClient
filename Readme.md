@@ -1,10 +1,13 @@
 # IGDB Client
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png" align="left" height="320" width="200" ></a>
 
-![alt text](https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png "1")
-![alt text](https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png "2")
-![alt text](https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png "search")
-![alt text](https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png "developer page")
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png
+" align="center" height="320" width="200" ></a>
 
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png
+" align="right" height="320" width="200" ></a>
+
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png" align="left" height="320" width="200" ></a>
 ## What is this?
 Igdb.com client i made for some lulz and getting experience with reactive coding. It's basically just working with igdb api and parsing it to fancy UI.
 
