@@ -4,7 +4,7 @@
 
 <a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png"  height="400" width="200" align="center"></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png" height="400" width="200" align="right"></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png" height="400" width="200"></a>
 
 <a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png" height="400" width="200" ></a>
 </div>
