@@ -21,6 +21,9 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Simple class for retrieving game data from api
+ */
 public class GameRetriever extends BroadcastReceiver {
 
     @Inject
@@ -28,11 +31,6 @@ public class GameRetriever extends BroadcastReceiver {
     RetrofitInterface api;
     private RawDataConverter converter;
     private DeveloperConverter developerConverter;
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Injector.inject(this, context);
-    }
 
     public GameRetriever() {
     }
@@ -42,6 +40,15 @@ public class GameRetriever extends BroadcastReceiver {
         this.api = api;
         this.converter = converter;
         this.developerConverter = developerConverter;
+    }
+
+    /**
+     * And this is here for updating api token. Basically it's just reinjecting on receiving
+     * broadcast
+     */
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Injector.inject(this, context);
     }
 
     public Observable<GameData> getGame(final int id) {

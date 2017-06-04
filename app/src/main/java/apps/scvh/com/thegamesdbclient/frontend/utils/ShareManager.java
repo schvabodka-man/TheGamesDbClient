@@ -7,6 +7,9 @@ import android.support.v7.widget.ShareActionProvider;
 
 import apps.scvh.com.thegamesdbclient.R;
 
+/**
+ * Class i'm using for sharing
+ */
 public class ShareManager {
 
     private Context context;

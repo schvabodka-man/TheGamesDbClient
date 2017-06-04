@@ -16,6 +16,10 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.images.RawScr
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 
+/**
+ * Here it is. I'm just "converting" one object that i retrieve from api to another that i use in
+ * logic
+ */
 public class RawDataConverter {
 
     private Context context;

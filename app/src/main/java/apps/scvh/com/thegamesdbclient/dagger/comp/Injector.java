@@ -15,6 +15,12 @@ import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Developer;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Search;
 
+/**
+ * And this is for injecting too. Don't look on "same" methods please, this is how dagger works(i
+ * can't pass just activity as argument, i MUST pass search activiy or game activity, etc for
+ * method)
+ * I'm using static methods for less hassle
+ */
 public class Injector {
 
     public static void inject(Search search) {

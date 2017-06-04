@@ -2,6 +2,9 @@ package apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys;
 
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 
+/**
+ * This class just checks is api key set. If not the dialog window will be called
+ */
 public class ApiKeyChecker {
 
     private ApiKeyDialogManager dialogManager;

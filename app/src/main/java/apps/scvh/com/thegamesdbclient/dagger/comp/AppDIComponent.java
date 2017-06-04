@@ -15,16 +15,43 @@ import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Search;
 import dagger.Component;
 
+
+/**
+ * Main interface used for injecting. Here goes ton of equal methods for injecting
+ */
 @Singleton
 @Component(modules = {RetrofitApiModule.class, KeysModule.class,
         ConvertersModule.class, RetrieversModule.class, FrontendInjectorsModule.class,
         FrontendDialogsModule.class})
-public interface AppDIComponent {
+interface AppDIComponent {
 
+    /**
+     * Inject.
+     * @param search the search activity
+     */
     void inject(Search search);
+
+    /**
+     * Inject.
+     * @param game the game activity
+     */
     void inject(Game game);
+
+    /**
+     * Inject.
+     * @param developer the developer activity
+     */
     void inject(Developer developer);
 
+    /**
+     * Inject.
+     * @param retriever the metadata retriever
+     */
     void inject(MetadataRetriever retriever);
+
+    /**
+     * Inject.
+     * @param retriever the game retriever
+     */
     void inject(GameRetriever retriever);
 }

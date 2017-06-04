@@ -20,6 +20,9 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 
+/**
+ * This is adapter i'm using for search list
+ */
 public class SearchGamesAdapter extends RecyclerView.Adapter<SearchGamesAdapter.ViewHolder> {
 
     private ArrayList<GameData> data;

@@ -24,9 +24,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 
+/**
+ * Injector for injecting game data into views
+ * I'm using ButterKnife to inject my views
+ */
 public class GameViewsInjector {
-
-    private Game game;
 
     @BindView(R.id.game_image)
     ImageView cover;
@@ -70,7 +72,7 @@ public class GameViewsInjector {
     TextView devName;
     @BindView(R.id.same_games)
     LinearLayout sameGames;
-
+    private Game game;
     private RecyclerViewWorker viewWorker;
 
     public GameViewsInjector(Game game) {

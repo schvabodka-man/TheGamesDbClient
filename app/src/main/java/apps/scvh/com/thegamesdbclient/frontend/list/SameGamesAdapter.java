@@ -17,6 +17,9 @@ import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.frontend.ui.activities.Game;
 
+/**
+ * And this is adapter i'm using for same games list in game activity
+ */
 public class SameGamesAdapter extends RecyclerView.Adapter<SameGamesAdapter.ViewHolder> {
 
     private ArrayList<GameData> data;

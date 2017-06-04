@@ -6,6 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
+/**
+ * Class that creates recycler inside of linear layout and then showing it
+ */
 public class RecyclerViewWorker {
 
     private Context context;

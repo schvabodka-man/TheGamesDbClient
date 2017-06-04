@@ -14,9 +14,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 
+/**
+ * Injector for injecting dev data into views
+ */
 public class DeveloperInjector {
-
-    private Developer developer;
 
     @BindView(R.id.developer_image)
     ImageView image;
@@ -28,6 +29,7 @@ public class DeveloperInjector {
     TextView date;
     @BindView(R.id.developer_site)
     TextView site;
+    private Developer developer;
 
     public DeveloperInjector(Developer developer) {
         this.developer = developer;

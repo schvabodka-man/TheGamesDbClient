@@ -8,6 +8,10 @@ import java.io.IOException;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
 import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
 
+/**
+ * Here it is. I'm just "converting" one object that i retrieve from api to another that i use in
+ * logic
+ */
 public class DeveloperConverter {
 
     public GameDeveloper convertDeveloper(RawDeveloper developer) throws

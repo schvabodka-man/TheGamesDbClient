@@ -11,6 +11,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 
+/**
+ * This class is used for getting api keys from encrypted preferences
+ */
 public class ApiKeyManager {
 
     private Context context;

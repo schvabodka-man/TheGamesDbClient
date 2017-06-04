@@ -6,6 +6,9 @@ import android.app.ProgressDialog;
 
 import apps.scvh.com.thegamesdbclient.R;
 
+/**
+ * This is stuff i'm using for showing "loading" dialog
+ */
 public class LoadingDialogManager {
 
     private ProgressDialog dialog;

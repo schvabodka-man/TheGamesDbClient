@@ -16,6 +16,9 @@ import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * This is class i'm using for showing dialog for entering api
+ */
 public class ApiKeyDialogManager {
 
     private Activity activity;

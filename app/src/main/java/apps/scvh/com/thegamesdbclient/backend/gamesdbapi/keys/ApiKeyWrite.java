@@ -9,6 +9,9 @@ import com.securepreferences.SecurePreferences;
 import apps.scvh.com.thegamesdbclient.R;
 import io.reactivex.Observable;
 
+/**
+ * Simple class using for writing and encryption of api key
+ */
 public class ApiKeyWrite {
 
     private Context context;

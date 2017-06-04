@@ -11,6 +11,9 @@ import android.widget.SearchView;
 import apps.scvh.com.thegamesdbclient.R;
 import apps.scvh.com.thegamesdbclient.frontend.dialogs.ApiKeyDialogManager;
 
+/**
+ * Click handlers and menu generator
+ */
 public class MenuManager {
 
     private ApiKeyDialogManager apiManager;
