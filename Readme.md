@@ -20,6 +20,7 @@ Android 5.0(api 21)
 
 ## Problems
 * [] fix that annoying bug with blocking api key getting(not critical but slowing down app)
+* [] implement okhttp exceptions
 
 ## Special thanks
 * JetBrains for awesome IDE
