@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -53,6 +54,8 @@ public class Search extends AppCompatActivity {
     @BindView(R.id.search_list)
     LinearLayout recycler;
 
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,7 @@ public class Search extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menuManager.initMenuForSearch(menu);
+        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         return true;
     }
 
@@ -80,6 +84,7 @@ public class Search extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            searchView.clearFocus();
             loadingManager.showDialog(new ProgressDialog(this));
             if (InternetChecker.isThereInternet(this)) {
                 handleSearch(intent.getStringExtra(SearchManager.QUERY));
