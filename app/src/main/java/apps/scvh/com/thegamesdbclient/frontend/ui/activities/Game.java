@@ -21,6 +21,7 @@ import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ShareManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
+import apps.scvh.com.thegamesdbclient.helpers.InternetChecker;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -53,12 +54,16 @@ public class Game extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        Injector.inject(this);
-        ToolbarStylizer.stylizeToolbar(getSupportActionBar());
-        dialogManager.showDialogWithClickListener(new ProgressDialog(this));
-        viewsInjector.setViewWorker(recyclerViewWorker);
-        viewsInjector.populateUI(receiveGameIDFromIntent(), dialogManager.getDialog());
+        if (InternetChecker.isThereInternet(this)) {
+            setContentView(R.layout.activity_game);
+            Injector.inject(this);
+            ToolbarStylizer.stylizeToolbar(getSupportActionBar());
+            dialogManager.showDialogWithClickListener(new ProgressDialog(this));
+            viewsInjector.setViewWorker(recyclerViewWorker);
+            viewsInjector.populateUI(receiveGameIDFromIntent(), dialogManager.getDialog());
+        } else {
+            finish();
+        }
     }
 
     private Observable<GameData> receiveGameIDFromIntent() {

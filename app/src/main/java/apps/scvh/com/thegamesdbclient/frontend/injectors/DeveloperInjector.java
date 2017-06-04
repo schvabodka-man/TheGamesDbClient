@@ -2,6 +2,8 @@ package apps.scvh.com.thegamesdbclient.frontend.injectors;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +56,7 @@ public class DeveloperInjector {
             }
             if (developer1.getWebsite() != null) {
                 site.setText(developer1.getWebsite());
+                initSiteClickListener(developer1.getWebsite());
             }
             if (developer1.getDate() != null) {
                 date.setText(developer.getString(R.string.foundation_date, String.valueOf(developer1
@@ -64,4 +67,11 @@ public class DeveloperInjector {
         });
     }
 
+    private void initSiteClickListener(String url) {
+        site.setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            developer.startActivity(i);
+        });
+    }
 }

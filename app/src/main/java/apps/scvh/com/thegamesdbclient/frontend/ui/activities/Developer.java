@@ -20,6 +20,7 @@ import apps.scvh.com.thegamesdbclient.frontend.injectors.DeveloperInjector;
 import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ShareManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
+import apps.scvh.com.thegamesdbclient.helpers.InternetChecker;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -48,11 +49,16 @@ public class Developer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_developer);
-        Injector.inject(this);
-        ToolbarStylizer.stylizeToolbar(getSupportActionBar());
-        dialogManager.showDialogWithClickListener(new ProgressDialog(this));
-        uiInjector.populateUI(getDataFromIntent(), dialogManager.getDialog());
+        if (InternetChecker.isThereInternet(this)) {
+            setContentView(R.layout.activity_developer);
+            Injector.inject(this);
+            ToolbarStylizer.stylizeToolbar(getSupportActionBar());
+            dialogManager.showDialogWithClickListener(new ProgressDialog(this));
+            uiInjector.populateUI(getDataFromIntent(), dialogManager.getDialog());
+        } else {
+            dialogManager.hideDialog();
+            finish();
+        }
     }
 
     @Override

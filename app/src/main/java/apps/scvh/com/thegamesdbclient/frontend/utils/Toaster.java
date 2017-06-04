@@ -20,4 +20,8 @@ public class Toaster {
                 .LENGTH_SHORT).show();
     }
 
+    public static void showNoInternet(Context context) {
+        Toast.makeText(context, context.getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+    }
+
 }

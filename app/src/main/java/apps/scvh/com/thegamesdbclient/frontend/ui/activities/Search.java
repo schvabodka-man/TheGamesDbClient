@@ -23,6 +23,7 @@ import apps.scvh.com.thegamesdbclient.frontend.utils.MenuManager;
 import apps.scvh.com.thegamesdbclient.frontend.utils.RecyclerViewWorker;
 import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import apps.scvh.com.thegamesdbclient.frontend.utils.ToolbarStylizer;
+import apps.scvh.com.thegamesdbclient.helpers.InternetChecker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -80,7 +81,11 @@ public class Search extends AppCompatActivity {
         super.onNewIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             loadingManager.showDialog(new ProgressDialog(this));
-            handleSearch(intent.getStringExtra(SearchManager.QUERY));
+            if (InternetChecker.isThereInternet(this)) {
+                handleSearch(intent.getStringExtra(SearchManager.QUERY));
+            } else {
+                loadingManager.hideDialog();
+            }
         }
     }
 

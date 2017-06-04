@@ -2,4 +2,5 @@
 <resources>
     <string name="empty_key">Key cannot be empty</string>
     <string name="nothing_has_been_found">Nothing has been found</string>
+    <string name="no_internet">No Internet connection</string>
 </resources>
