@@ -25,7 +25,7 @@ public class RetrieversModule {
 
     @Provides
     @Named("MetadataRetriever")
-    public MetadataRetriever metadataRetriever(@Named("RetrofitInterface") RetrofitInterface
+    MetadataRetriever metadataRetriever(@Named("RetrofitInterface") RetrofitInterface
                                                        retrofitInterface) {
         return new MetadataRetriever(retrofitInterface);
     }

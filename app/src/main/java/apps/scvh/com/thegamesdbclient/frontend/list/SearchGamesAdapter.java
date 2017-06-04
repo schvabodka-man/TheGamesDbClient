@@ -56,7 +56,6 @@ public class SearchGamesAdapter extends RecyclerView.Adapter<SearchGamesAdapter.
         return data.size();
     }
 
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;

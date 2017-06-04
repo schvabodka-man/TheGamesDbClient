@@ -49,12 +49,6 @@ public class GameRetriever extends BroadcastReceiver {
                 .execute().body().get(0)))).subscribeOn(Schedulers.newThread());
     }
 
-    public Observable<GameData> getLightGameForDeveloper(final int id) {
-        return Observable.defer(() -> Observable.just(converter.convertRawData(api
-                .getGameDataForDeveloperGamesList(id)
-                .execute().body().get(0)))).subscribeOn(Schedulers.newThread());
-    }
-
     public Observable<ArrayList<GameData>> searchGames(final String searchQuery) {
         return Observable.defer(() -> Observable.just(converter.convertRawSearch(api
                 .getSearchResults
@@ -65,15 +59,7 @@ public class GameRetriever extends BroadcastReceiver {
     public Observable<GameDeveloper> getDeveloper(final int id) {
         return Observable.defer(() -> {
             RawDeveloper rawDeveloper = api.getDeveloper(id).execute().body().get(0);
-            ArrayList<GameData> gameData = new ArrayList<>();
-            if (rawDeveloper.getGames() != null) {
-                for (Integer integer : rawDeveloper.getGames()) {
-                    getLightGameForDeveloper(integer).subscribe(gameData::add);
-                }
-                return Observable.just(developerConverter.convertDeveloper(rawDeveloper, gameData));
-            } else {
-                return Observable.just(developerConverter.convertDeveloper(rawDeveloper, null));
-            }
+            return Observable.just(developerConverter.convertDeveloper(rawDeveloper));
         }).subscribeOn(Schedulers.newThread());
     }
 }

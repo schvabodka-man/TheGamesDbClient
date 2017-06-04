@@ -36,7 +36,7 @@ public class FrontendInjectorsModule {
 
     @Provides
     @Named("DeveloperInjector")
-    public DeveloperInjector developerInjector() {
+    DeveloperInjector developerInjector() {
         return new DeveloperInjector((Developer) activity);
     }
 

@@ -23,7 +23,6 @@ public class RetrofitApiModule {
         this.context = context;
     }
 
-
     @Provides
     @Named("RetrofitInterface")
     public RetrofitInterface retrofitInterface(@Named("ApiKey") ApiKeyManager manager) {
