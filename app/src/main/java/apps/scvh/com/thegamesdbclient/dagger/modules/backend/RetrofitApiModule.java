@@ -41,6 +41,4 @@ public class RetrofitApiModule {
         return retrofit.create(RetrofitInterface.class);
     }
 
-
-
 }
