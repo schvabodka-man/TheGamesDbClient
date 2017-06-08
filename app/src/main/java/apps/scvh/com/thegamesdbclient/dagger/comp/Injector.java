@@ -1,10 +1,6 @@
 package apps.scvh.com.thegamesdbclient.dagger.comp;
 
 
-import android.content.Context;
-
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.RetrofitApiModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.ConvertersModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.KeysModule;
@@ -50,26 +46,6 @@ public class Injector {
                 .keysModule(new KeysModule(developer)).retrieversModule(new RetrieversModule())
                 .build();
         component.inject(developer);
-    }
-
-    public static void inject(MetadataRetriever retriever, Context context) {
-        AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
-                RetrofitApiModule(context)
-        ).frontendInjectorsModule(new FrontendInjectorsModule()).frontendDialogsModule(new
-                FrontendDialogsModule()).convertersModule(new ConvertersModule(context))
-                .keysModule(new KeysModule(context)).retrieversModule(new RetrieversModule())
-                .build();
-        component.inject(retriever);
-    }
-
-    public static void inject(GameRetriever retriever, Context context) {
-        AppDIComponent component = DaggerAppDIComponent.builder().retrofitApiModule(new
-                RetrofitApiModule(context)).frontendInjectorsModule(new FrontendInjectorsModule()
-        ).frontendDialogsModule(new
-                FrontendDialogsModule()).convertersModule(new ConvertersModule(context))
-                .keysModule(new KeysModule(context)).retrieversModule(new RetrieversModule())
-                .build();
-        component.inject(retriever);
     }
 
 }

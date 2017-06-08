@@ -2,8 +2,6 @@ package apps.scvh.com.thegamesdbclient.dagger.comp;
 
 import javax.inject.Singleton;
 
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.MetadataRetriever;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.RetrofitApiModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.ConvertersModule;
 import apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers.KeysModule;
@@ -43,15 +41,4 @@ interface AppDIComponent {
      */
     void inject(Developer developer);
 
-    /**
-     * Inject.
-     * @param retriever the metadata retriever
-     */
-    void inject(MetadataRetriever retriever);
-
-    /**
-     * Inject.
-     * @param retriever the game retriever
-     */
-    void inject(GameRetriever retriever);
 }

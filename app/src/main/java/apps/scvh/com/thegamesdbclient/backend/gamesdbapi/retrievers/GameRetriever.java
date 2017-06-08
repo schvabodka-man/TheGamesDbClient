@@ -7,16 +7,13 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.DeveloperConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
-import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -26,20 +23,20 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class GameRetriever extends BroadcastReceiver {
 
-    @Inject
-    @Named("RetrofitInterface")
-    RetrofitInterface api;
+    private RetrofitInterface api;
+    private RetrofitBuilder builder;
     private RawDataConverter converter;
     private DeveloperConverter developerConverter;
 
     public GameRetriever() {
     }
 
-    public GameRetriever(RetrofitInterface api, RawDataConverter converter, DeveloperConverter
+    public GameRetriever(RetrofitBuilder builder, RawDataConverter converter, DeveloperConverter
             developerConverter) {
-        this.api = api;
+        this.builder = builder;
         this.converter = converter;
         this.developerConverter = developerConverter;
+        api = builder.buildRetrofit();
     }
 
     /**
@@ -48,7 +45,7 @@ public class GameRetriever extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        Injector.inject(this, context);
+        api = builder.buildRetrofit();
     }
 
     public Observable<GameData> getGame(final int id) {

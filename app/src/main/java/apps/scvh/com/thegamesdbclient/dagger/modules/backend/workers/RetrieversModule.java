@@ -3,7 +3,7 @@ package apps.scvh.com.thegamesdbclient.dagger.modules.backend.workers;
 
 import javax.inject.Named;
 
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.DeveloperConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.RawDataConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.GameRetriever;
@@ -16,18 +16,18 @@ public class RetrieversModule {
 
     @Provides
     @Named("GameRetriever")
-    public GameRetriever retriever(@Named("RetrofitInterface") RetrofitInterface retrofitInterface,
+    public GameRetriever retriever(@Named("RetrofitInterfaceBuilder") RetrofitBuilder builder,
                                    @Named("GameDataConverter") RawDataConverter rawDataConverter,
                                    @Named("DeveloperConverter") DeveloperConverter
                                            developerConverter) {
-        return new GameRetriever(retrofitInterface, rawDataConverter, developerConverter);
+        return new GameRetriever(builder, rawDataConverter, developerConverter);
     }
 
     @Provides
     @Named("MetadataRetriever")
-    MetadataRetriever metadataRetriever(@Named("RetrofitInterface") RetrofitInterface
-                                                       retrofitInterface) {
-        return new MetadataRetriever(retrofitInterface);
+    MetadataRetriever metadataRetriever(@Named("RetrofitInterfaceBuilder") RetrofitBuilder
+                                                builder) {
+        return new MetadataRetriever(builder);
     }
 
 }

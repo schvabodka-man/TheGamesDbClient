@@ -10,15 +10,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
 import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
-import apps.scvh.com.thegamesdbclient.dagger.comp.Injector;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -27,24 +24,20 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MetadataRetriever extends BroadcastReceiver {
 
-    @Inject
-    @Named("RetrofitInterface")
-    RetrofitInterface retrofitInterface;
+    private RetrofitBuilder builder;
+    private RetrofitInterface retrofitInterface;
 
     public MetadataRetriever() {
     }
 
-    /**
-     * Instantiates a new Metadata retriever.
-     * @param retrofitInterface the retrofit interface
-     */
-    public MetadataRetriever(RetrofitInterface retrofitInterface) {
-        this.retrofitInterface = retrofitInterface;
+    public MetadataRetriever(RetrofitBuilder builder) {
+        this.builder = builder;
+        retrofitInterface = builder.buildRetrofit();
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Injector.inject(this, context);
+        retrofitInterface = builder.buildRetrofit();
     }
 
     /**
