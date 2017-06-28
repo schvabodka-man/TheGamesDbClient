@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="api_call">https://igdbcom-internet-game-database-v1.p.mashape.com/</string>
-    <string name="api_header">X-Mashape-Key</string>
     <string name="to_replace">//</string>
     <string name="repalce_with">https://</string>
 </resources>
