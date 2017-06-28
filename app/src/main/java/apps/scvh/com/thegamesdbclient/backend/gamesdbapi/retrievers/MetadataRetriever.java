@@ -12,6 +12,7 @@ import java.util.List;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.GameRawData;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.retrievers.lists.MetadataTypeFlag;
@@ -26,18 +27,23 @@ public class MetadataRetriever extends BroadcastReceiver {
 
     private RetrofitBuilder builder;
     private RetrofitInterface retrofitInterface;
+    private ApiKeyManager keyManager;
+
+    private String apiKeyFlag; //NEET trick
 
     public MetadataRetriever() {
     }
 
-    public MetadataRetriever(RetrofitBuilder builder) {
+    public MetadataRetriever(RetrofitBuilder builder, ApiKeyManager keyManager) {
         this.builder = builder;
         retrofitInterface = builder.buildRetrofit();
+        this.keyManager = keyManager;
+        apiKeyFlag = keyManager.getApiKey().blockingFirst();
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        retrofitInterface = builder.buildRetrofit();
+        apiKeyFlag = keyManager.getApiKey().blockingFirst();
     }
 
     /**
@@ -109,19 +115,19 @@ public class MetadataRetriever extends BroadcastReceiver {
      */
     private String convertIdToStringData(int id, MetadataTypeFlag flag) throws IOException {
         if (flag == MetadataTypeFlag.GENRES) {
-            return retrofitInterface.getGenreName(id).execute().body()
+            return retrofitInterface.getGenreName(id, apiKeyFlag).execute().body()
                     .get(0).getName();
         } else if (flag == MetadataTypeFlag.ENGINES) {
-            return retrofitInterface.getEngine(id).execute().body()
+            return retrofitInterface.getEngine(id, apiKeyFlag).execute().body()
                     .get(0).getName();
         } else if (flag == MetadataTypeFlag.GAMEMODES) {
-            return retrofitInterface.getGamemodes(id).execute().body()
+            return retrofitInterface.getGamemodes(id, apiKeyFlag).execute().body()
                     .get(0).getName();
         } else if (flag == MetadataTypeFlag.PERSPECTIVES) {
-            return retrofitInterface.getPerspective(id).execute().body()
+            return retrofitInterface.getPerspective(id, apiKeyFlag).execute().body()
                     .get(0).getName();
         } else if (flag == MetadataTypeFlag.THEMES) {
-            return retrofitInterface.getThemes(id).execute().body()
+            return retrofitInterface.getThemes(id, apiKeyFlag).execute().body()
                     .get(0).getName();
         } else {
             return "";
@@ -135,7 +141,7 @@ public class MetadataRetriever extends BroadcastReceiver {
      */
     public GameRawData getRawSimillarGameData(int id) {
         try {
-            return retrofitInterface.getLightGameData(id).execute().body().get(0);
+            return retrofitInterface.getLightGameData(id, apiKeyFlag).execute().body().get(0);
         } catch (IOException e) {
             return null;
         }
@@ -152,7 +158,8 @@ public class MetadataRetriever extends BroadcastReceiver {
         return Observable.defer(() -> {
             RawDeveloper developer;
             GameDeveloper developerFinal = new GameDeveloper();
-            developer = retrofitInterface.getLightDeveloperData(id).execute().body().get(0);
+            developer = retrofitInterface.getLightDeveloperData(id, apiKeyFlag).execute().body()
+                    .get(0);
             if (developer.getName() != null) {
                 developerFinal.setName(developer.getName());
             }

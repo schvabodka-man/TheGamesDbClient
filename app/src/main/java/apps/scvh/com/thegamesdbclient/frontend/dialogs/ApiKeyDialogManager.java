@@ -14,6 +14,7 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyUpdater;
 import apps.scvh.com.thegamesdbclient.frontend.utils.Toaster;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -37,7 +38,7 @@ public class ApiKeyDialogManager {
     }
 
     public void showDialog() {
-        getter.getApiKey().subscribe(apiKey -> {
+        getter.getApiKey().observeOn(AndroidSchedulers.mainThread()).subscribe(apiKey -> {
             loadingManager.showDialog(new ProgressDialog(activity));
             dialog = buildDialog(activity, apiKey);
             dialog.show();

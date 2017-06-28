@@ -11,6 +11,7 @@ import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitInterface;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.DeveloperConverter;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.converters.RawDataConverter;
+import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.rawmodels.metadata.RawDeveloper;
 import apps.scvh.com.thegamesdbclient.backend.models.GameData;
 import apps.scvh.com.thegamesdbclient.backend.models.GameDeveloper;
@@ -27,16 +28,21 @@ public class GameRetriever extends BroadcastReceiver {
     private RetrofitBuilder builder;
     private RawDataConverter converter;
     private DeveloperConverter developerConverter;
+    private ApiKeyManager keyManager;
+
+    private String apiKeyFlag; //not so nice trick but i'm pretty ok with that
 
     public GameRetriever() {
     }
 
     public GameRetriever(RetrofitBuilder builder, RawDataConverter converter, DeveloperConverter
-            developerConverter) {
+            developerConverter, ApiKeyManager keyManager) {
         this.builder = builder;
         this.converter = converter;
         this.developerConverter = developerConverter;
-        api = builder.buildRetrofit();
+        this.api = this.builder.buildRetrofit();
+        this.keyManager = keyManager;
+        apiKeyFlag = keyManager.getApiKey().blockingFirst();
     }
 
     /**
@@ -45,24 +51,25 @@ public class GameRetriever extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        api = builder.buildRetrofit();
+        apiKeyFlag = keyManager.getApiKey().blockingFirst();
     }
 
     public Observable<GameData> getGame(final int id) {
-        return Observable.defer(() -> Observable.just(converter.convertRawData(api.getGame(id)
+        return Observable.defer(() -> Observable.just(converter.convertRawData(api.getGame(id,
+                apiKeyFlag)
                 .execute().body().get(0)))).subscribeOn(Schedulers.newThread());
     }
 
     public Observable<ArrayList<GameData>> searchGames(final String searchQuery) {
         return Observable.defer(() -> Observable.just(converter.convertRawSearch(api
                 .getSearchResults
-                        (searchQuery).execute().body()))).subscribeOn(Schedulers.io()).observeOn
+                        (searchQuery, apiKeyFlag).execute().body()))).subscribeOn(Schedulers.io()).observeOn
                 (AndroidSchedulers.mainThread());
     }
 
     public Observable<GameDeveloper> getDeveloper(final int id) {
         return Observable.defer(() -> {
-            RawDeveloper rawDeveloper = api.getDeveloper(id).execute().body().get(0);
+            RawDeveloper rawDeveloper = api.getDeveloper(id, apiKeyFlag).execute().body().get(0);
             return Observable.just(developerConverter.convertDeveloper(rawDeveloper));
         }).subscribeOn(Schedulers.newThread());
     }

@@ -5,7 +5,6 @@ import android.content.Context;
 import javax.inject.Named;
 
 import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.RetrofitBuilder;
-import apps.scvh.com.thegamesdbclient.backend.gamesdbapi.keys.ApiKeyManager;
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,8 +19,8 @@ public class RetrofitApiModule {
 
     @Provides
     @Named("RetrofitInterfaceBuilder")
-    public RetrofitBuilder retrofitInterface(@Named("ApiKey") ApiKeyManager manager) {
-        return new RetrofitBuilder(context, manager);
+    RetrofitBuilder retrofitInterface() {
+        return new RetrofitBuilder(context);
     }
 
 }
