@@ -1,3 +1,5 @@
+<a href="url"><img src="http://forthebadge.com/images/badges/built-for-android.svg" width="300" height="50"></a>
+
 # IGDB Client
 <div style="max-width: 20%;max-height: 20%;display: inline-block; align: center;">
 <a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png" height="400" width="200"  align="left"></a>
