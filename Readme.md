@@ -1,4 +1,7 @@
-<a href="url"><img src="http://forthebadge.com/images/badges/built-for-android.svg" width="300" height="50"></a>
+<div style="display: inline-block;">
+<img src="https://raw.githubusercontent.com/schvabodka-man/Custom-Badges/master/Languages/Java/png/Java%20xxxhdpi.png" width="300" height="46">
+<a href="url"><img src="http://forthebadge.com/images/badges/built-for-android.svg" width="300" height="45"></a>
+</div>
 
 # IGDB Client
 <div style="max-width: 20%;max-height: 20%;display: inline-block; align: center;">
