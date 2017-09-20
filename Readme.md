@@ -28,6 +28,4 @@ Android 5.0(api 21)
 * [] implement okhttp exceptions
 
 ## Special thanks
-* JetBrains for awesome IDE
-* RMS for my favourite editor - EMACS
 * My friend Vlad for awesome icon ;)
