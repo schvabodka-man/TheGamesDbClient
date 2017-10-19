@@ -5,13 +5,13 @@
 
 # IGDB Client
 <div style="max-width: 20%;max-height: 20%;display: inline-block; align: center;">
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game.png" height="400" width="200"  align="left"></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/TheGamesDbClient/master/screenshots/game.png" height="400" width="200"  align="left"></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/game2.png"  height="400" width="200" align="center"></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/TheGamesDbClient/master/screenshots/game2.png"  height="400" width="200" align="center"></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/search.png" height="400" width="200" align="left"></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/TheGamesDbClient/master/screenshots/search.png" height="400" width="200" align="left"></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/igdb/dev.png" height="400" width="200" ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/TheGamesDbClient/master/screenshots/dev.png" height="400" width="200" ></a>
 </div>
 
 ## What is this?
